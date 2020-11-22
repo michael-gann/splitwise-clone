@@ -1,0 +1,12 @@
+/* TODO Add site wide styles */
+body {
+  background-color: rgb(251, 251, 251);
+  width: 100vw;
+  height: 100vw;
+  margin: 0;
+}
+
+html {
+  width: 100vw;
+  height: 100vw;
+}

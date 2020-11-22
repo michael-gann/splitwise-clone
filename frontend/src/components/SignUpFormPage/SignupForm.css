@@ -1,0 +1,104 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+
+/* .sign-up-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 400px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%
+} */
+
+/* .loginErrors-li {
+  height: auto;
+} */
+
+.signupErrors-ul {
+  height: 50px;
+  width: 200px;
+  max-width: 100%;
+  font-size: 10px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: whitesmoke; */
+  width: 400px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%;
+  border-radius: 50px;
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 10px;
+  width: 300px;
+  height: 600px;
+  font-family: 'Roboto Mono', monospace;
+  padding-bottom: 160px;
+  border-radius: 25px;
+  box-shadow: 4px 4px 15px 2px rgba(0, 0, 0, .2);
+}
+
+.signupErrors-div, .signupErrors-ul {
+  width: 250px;
+  color: red;
+  margin-right: 30px;
+}
+
+.signupErrors-ul {
+  height: 120px;
+}
+
+.signupErrors-div {
+  padding: 2px;
+}
+
+
+.usernamefields, .passwordfields, .emailfields, .confirm-passwordfields{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#username, #password, #confirm-password, #email, .signup-button {
+  width: 225px;
+  max-width: 100%;
+  height: 24px;
+  border: .01px solid grey;
+  font-size: 15px;
+}
+
+.signup-button {
+  border-radius: 0px;
+  font-family: 'Roboto Mono', monospace;
+  height: 32px;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.signup-button:hover {
+  background-color: red;
+
+}

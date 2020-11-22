@@ -1,0 +1,46 @@
+.main-nav-container {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(21, 214, 150);
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
+  top: 0;
+}
+
+.home-link {
+  align-self: center;
+  width: 100px;
+}
+
+.active {
+  text-decoration: none;
+}
+
+.profile-link {
+  position: relative;
+  height: 30px;
+  border-radius: 50px;
+  width: 30px;
+  align-self: center;
+}
+
+.link-container {
+  display: flex;
+  justify-content: space-between;
+  width: 980px;
+  min-width: 200px;
+  max-width: 980px;
+  align-self: center;
+  height: 40px;
+}
+
+.profile-dropdown {
+  min-width: 150px;
+  position: absolute;
+  background-color: #ffffff;
+  display: block;
+  z-index: 8;
+  border-radius: 10px;
+  top: 23px;
+  left: -90px;
+}

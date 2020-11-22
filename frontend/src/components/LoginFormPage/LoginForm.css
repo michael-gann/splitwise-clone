@@ -1,0 +1,102 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login-form--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 400px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%
+}
+
+/* .loginErrors-li {
+  height: auto;
+} */
+
+.loginErrors-ul {
+  height: 50px;
+  width: 200px;
+  max-width: 100%;
+  font-size: 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: whitesmoke; */
+  width: 400px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%;
+  border-radius: 50px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  padding: 10px;
+  width: 300px;
+  height: 275px;
+  font-family: 'Roboto Mono', monospace;
+  padding-bottom: 100px;
+  border-radius: 25px;
+  box-shadow: 4px 4px 15px 2px rgba(0, 0, 0, .2);
+  margin-bottom: 215px;
+}
+
+.loginErrors-div, .loginErrors-ul {
+  width: 250px;
+  color: red;
+  margin-right: 30px;
+}
+
+.loginErrors-ul {
+  height: 42px;
+}
+
+.loginErrors-div {
+  padding: 2px;
+}
+
+
+.usernamefields, .passwordfields {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#username, #password, .login-button {
+  width: 225px;
+  max-width: 100%;
+  height: 24px;
+  border: .01px solid grey;
+  font-size: 15px;
+}
+
+.login-button {
+  border-radius: 0px;
+  font-family: 'Roboto Mono', monospace;
+  height: 32px;
+  font-size: 15px;
+}
+
+.login-button:hover {
+  background-color: red;
+
+}
