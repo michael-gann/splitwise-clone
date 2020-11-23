@@ -36,14 +36,12 @@ router.get(
       usersMap[user.id] = user;
     }
 
-    // console.log(transactions);
-
     let transactionSummaryByUserId = {};
 
     // Set object to send to front end to access balances and transactions by other users relating to current user
     for (let transaction of transactions) {
       let otherUserId;
-      let amount = transaction.amount;
+      let amount = transaction.amount / 2;
       if (transaction.to === userId) {
         otherUserId = transaction.from;
       } else {
@@ -63,10 +61,10 @@ router.get(
       }
     }
 
-    console.log(
-      "transaction summary -----------------",
-      transactionSummaryByUserId
-    );
+    // console.log(
+    //   "transaction summary -----------------",
+    //   transactionSummaryByUserId
+    // );
 
     // const result = {
     //   transactions,
@@ -75,6 +73,47 @@ router.get(
 
     // console.log("API ROUTE", result);
     res.send(transactionSummaryByUserId);
+  })
+);
+
+router.get(
+  "/all",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+
+    const userId = parseInt(user.id, 10);
+
+    const transactions = await Transaction.findAll({
+      where: {
+        [Op.or]: {
+          to: userId,
+          from: userId,
+        },
+      },
+    });
+
+    const users = await User.findAll({
+      where: {
+        id: {
+          [Op.in]: transactions
+            .map((transaction) => transaction.from)
+            .concat(transactions.map((transaction) => transaction.to)),
+        },
+      },
+    });
+
+    const usersMap = {};
+    for (const user of users) {
+      usersMap[user.id] = user;
+    }
+
+    const result = {
+      transactions,
+      users: usersMap,
+    };
+
+    res.send(result);
   })
 );
 

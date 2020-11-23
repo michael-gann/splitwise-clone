@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignUpFormPage";
 import Navigation from "./components/Navigation/index";
 import DashboardPage from "./components/DashboardPage";
+import RecentActivityPage from "./components/RecentActivityPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <DashboardPage></DashboardPage>
+          </Route>
+          <Route path="/activity">
+            <RecentActivityPage></RecentActivityPage>
           </Route>
         </Switch>
       )}
