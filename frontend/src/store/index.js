@@ -6,7 +6,7 @@ import transactionReducer from "./transaction";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  transaction: transactionReducer,
+  balances: transactionReducer,
 });
 
 let enhancer;

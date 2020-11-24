@@ -8,38 +8,57 @@ import * as transactionActions from "../../store/transaction";
 import YouAreOwed from "./YouAreOwed";
 import YouOwe from "./YouOwe";
 
-const DashboardPage = (props) => {
+const DashboardPage = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.transaction);
+  const data = useSelector((state) => state.balances);
   // const [positiveBalances, setPositiveBalances] = useState([]);
   // const [negativeBalances, setNegativeBalances] = useState([]);
 
   useEffect(() => {
-    return dispatch(transactionActions.transactions());
+    dispatch(transactionActions.balances());
   }, [dispatch]);
+
+  let owe = {};
+  let owed = {};
 
   let owedArr;
   let oweArr;
 
+  let balances;
+  let users;
+
   const populateData = () => {
-    const balances = data.transactions;
+    if (data.balances) {
+      balances = data.balances.balancesByUserId;
+      users = data.balances.users;
+      console.log("balances-----", balances);
+      console.log("users-------", users);
 
-    let owe = {};
-    let owed = {};
-
-    for (let friendId in balances) {
-      if (balances[friendId].balance > 0) {
-        owed[friendId] = balances[friendId];
-      } else if (balances[friendId].balance < 0) {
-        owe[friendId] = balances[friendId];
+      for (let userId in balances) {
+        if (balances[userId] < 0) {
+          owe[userId] = {
+            balance: balances[userId],
+            name: users[userId].username,
+          };
+        }
+        if (balances[userId] > 0) {
+          owed[userId] = {
+            balance: balances[userId],
+            name: users[userId].username,
+          };
+        }
       }
-    }
 
-    owedArr = Object.values(owed);
-    oweArr = Object.values(owe);
+      oweArr = Object.values(owe);
+      owedArr = Object.values(owed);
+
+      console.log(oweArr, owedArr);
+    }
   };
 
   populateData();
+
+  console.log("BALANCES!---------", balances);
 
   return (
     <div className="wrapper">
@@ -86,6 +105,14 @@ const DashboardPage = (props) => {
 };
 
 export default DashboardPage;
+
+// for (let friendId in balances) {
+//   if (balances[friendId].balance > 0) {
+//     owed[friendId] = balances[friendId];
+//   } else if (balances[friendId].balance < 0) {
+//     owe[friendId] = balances[friendId];
+//   }
+// }
 
 // const sessionUser = useSelector((state) => state.session.user);
 

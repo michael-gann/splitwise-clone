@@ -1,18 +1,22 @@
 // import { useSelector } from "react-redux";
 
 const YouOwe = ({ balances }) => {
-  // const logState = useSelector((state) => state);
+  if (!balances) {
+    return null;
+  }
 
   return (
-    <>
-      {balances.map((entry, idx) => {
-        return (
-          <div className="you-owe-container" key={idx}>
-            <div>{`You owe ${entry.name} ${entry.balance}`}</div>
-          </div>
-        );
-      })}
-    </>
+    balances && (
+      <div className="you-owe-main-container">
+        {balances.map((entry, idx) => {
+          return (
+            <div className="you-owe-container" key={idx}>
+              <div>{`You owe ${entry.name} ${-entry.balance}`}</div>
+            </div>
+          );
+        })}
+      </div>
+    )
   );
 };
 

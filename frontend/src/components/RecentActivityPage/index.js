@@ -1,28 +1,44 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useState, useEffect } from "react";
+// import { useSelector, useDispatch } from "react-redux";
 
 import "./RecentActivity.css";
 
-import * as transactionActions from "../../store/transaction";
+// import * as transactionActions from "../../store/transaction";
 import RecentTransactions from "./RecentTransactions";
 
 const RecentActivityPage = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.transaction.history);
+  // const [recentData, setRecentData] = useState([]);
+  // const dispatch = useDispatch();
+  // const data = useSelector((state) => state.transaction.history);
+  // const user = useSelector((state) => state.session.user);
 
-  useEffect(() => {
-    return dispatch(transactionActions.recentActivity());
-  }, [dispatch]);
+  // console.log("user info", user);
 
-  const getData = () => {
-    if (data !== null) {
-      const { transactions } = data;
-      const { users } = data;
-      console.log(transactions, users);
-    }
-  };
+  // const userId = user.id;
 
-  getData();
+  // useEffect(() => {
+  //   if (data === null) {
+  //     return dispatch(transactionActions.recentActivity());
+  //   }
+  // }, [dispatch, data]);
+
+  // const usernameChecker = (currentUser, transaction) => {
+  //   let otherUser;
+
+  //   if (transaction.to === currentUser) {
+  //     otherUser = transaction.from;
+  //   } else {
+  //     otherUser = transaction.to;
+  //   }
+
+  //   return otherUser;
+  // };
+
+  // let activityNotUndef;
+
+  // useEffect(() => {}, [recentData, data, user.username]);
+
+  // console.log("recentData----", recentData);
 
   return (
     <div className="main-wrapper">
