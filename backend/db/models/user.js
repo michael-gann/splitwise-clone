@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope("currentUser").findByPk(user.id);
     }
     static associate(models) {
-      User.hasMany(models.Transaction, { foreignKey: "to" });
-      User.hasMany(models.Transaction, { foreignKey: "from" });
+      User.hasMany(models.Transaction, { foreignKey: "createdBy" });
+      User.hasMany(models.Transaction, { foreignKey: "paidBy" });
       User.hasMany(models.Friend, { foreignKey: "userId1" });
       User.hasMany(models.Friend, { foreignKey: "userId2" });
       User.hasMany(models.Comment, { foreignKey: "userId" });
