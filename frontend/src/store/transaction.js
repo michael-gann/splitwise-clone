@@ -1,7 +1,7 @@
 import { fetch } from "./csrf";
 
 const GET_BALANCES = "transactions/balances";
-const GET_ALL = "transactions/all";
+const GET_ACTIVITY = "transactions/all";
 
 const getBalances = (balances) => {
   return {
@@ -10,28 +10,29 @@ const getBalances = (balances) => {
   };
 };
 
-const getAll = (activity) => {
+const getActivity = (activity) => {
   return {
-    type: GET_ALL,
+    type: GET_ACTIVITY,
     payload: activity,
   };
 };
 
 export const recentActivity = () => async (dispatch) => {
-  const res = await fetch("/api/transactions/all");
-  dispatch(getAll(res.data));
+  const res = await fetch("/api/transactions/activity");
+  dispatch(getActivity(res.data));
+
+  return res;
 };
 
 export const balances = () => async (dispatch) => {
   const res = await fetch("/api/transactions/balances");
-  // array of transaction objects
   dispatch(getBalances(res.data));
 
   return res;
 };
 
 const transactionReducer = (
-  state = { balances: null, history: null },
+  state = { balances: null, activity: null },
   action
 ) => {
   let newState;
@@ -42,9 +43,9 @@ const transactionReducer = (
       // console.log("state", newState);
       // console.log("action", action.payload);
       return newState;
-    case GET_ALL:
+    case GET_ACTIVITY:
       newState = Object.assign({}, state);
-      newState.history = action.payload;
+      newState.activity = action.payload;
       // console.log("state", newState);
       // console.log("action", action.payload);
       return newState;

@@ -27,7 +27,7 @@ router.get(
 
     // filter and map over paidBy to get userId's that are not current user to
     const paidTransactionIds = myTxnUsers
-      .filter((obj) => obj.Transaction.paidBy === userId)
+      .filter((obj) => obj.Transaction === userId)
       .map((obj) => obj.Transaction.id);
 
     // query for users that have a balance with current user
@@ -84,42 +84,93 @@ router.get(
 );
 
 router.get(
-  "/all",
+  "/activity",
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
 
     const userId = parseInt(user.id, 10);
 
-    const transactions = await Transaction.findAll({
-      where: {
-        [Op.or]: {
-          to: userId,
-          from: userId,
+    // Transaction IDs that I have a share in
+    const myTransactionIds = (
+      await TransactionUser.findAll({
+        where: {
+          userId: userId,
         },
-      },
-      order: [["createdAt", "ASC"]],
-    });
+      })
+    ).map((tu) => tu.transactionId);
 
-    const users = await User.findAll({
+    // All the transactionUsers that have a share in the transactions
+    // that I have a share in
+    const transactionUsersByTransactionId = (
+      await TransactionUser.findAll({
+        where: {
+          transactionId: {
+            [Op.in]: myTransactionIds,
+          },
+        },
+      })
+    ).reduce((map, tu) => {
+      if (map[tu.transactionId]) {
+        map[tu.transactionId][tu.userId] = tu;
+      } else {
+        map[tu.transactionId] = { [tu.userId]: tu };
+      }
+      return map;
+    }, {});
+
+    console.log(transactionUsersByTransactionId);
+
+    // All the transactions that I have a share in
+    const myTransactions = await Transaction.findAll({
       where: {
         id: {
-          [Op.in]: transactions
-            .map((transaction) => transaction.from)
-            .concat(transactions.map((transaction) => transaction.to)),
+          [Op.in]: myTransactionIds,
         },
       },
     });
 
-    const usersMap = {};
-    for (const user of users) {
-      usersMap[user.id] = user;
-    }
+    // All the users that created the transactions I'm involved in
+    const createdUserById = (
+      await User.findAll({
+        where: {
+          id: {
+            [Op.in]: myTransactions.map((t) => t.createdBy),
+          },
+        },
+      })
+    ).reduce((map, user) => {
+      map[user.id] = user;
+      return map;
+    }, {});
 
-    const result = {
-      transactions,
-      users: usersMap,
-    };
+    // creating object of useable info
+    const result = myTransactions
+      .map((t) => {
+        let amount = 0;
+        if (t.paidBy === userId) {
+          for (const tu of Object.values(
+            transactionUsersByTransactionId[t.id]
+          )) {
+            if (tu.userId !== userId) {
+              amount += parseFloat(tu.amount);
+            }
+          }
+        } else {
+          amount =
+            -1 *
+            parseFloat(transactionUsersByTransactionId[t.id][userId].amount);
+        }
+        const createdByUsername = createdUserById[t.createdBy].username;
+
+        return {
+          title: t.title,
+          createdBy: createdByUsername,
+          amount,
+          transactionId: t.id,
+        };
+      })
+      .sort((a, b) => b.transactionId - a.transactionId); // DESC
 
     res.send(result);
   })
@@ -128,6 +179,67 @@ router.get(
 module.exports = router;
 
 // OLD LOGIC
+
+// const transactionIds = TxnUsersIncludeCurrentUser.map(
+//   (txnUser) => txnUser.transactionId
+// );
+
+// const transactionActivity = await Transaction.findAll({
+//   where: {
+//     id: {
+//       [Op.in]: transactionIds,
+//     },
+//   },
+//   order: [["createdAt", "ASC"]],
+// });
+
+// // const users = await User.findAll({});
+
+// // const usersMap = {};
+// // for (const user of users) {
+// //   usersMap[user.id] = user;
+// // }
+
+// const result = {
+//   // only current users transactionusers
+//   myTxnUsers,
+//   // all transactionUsers that include current User
+//   // TxnUsersIncludeCurrentUser,
+//   // "transactionActivity": [
+//   //   {
+//   //     "id": 1,
+//   //     "createdBy": 1,
+//   //     "paidBy": 1,
+//   //     "amount": "25",
+//   //     "title": "One Mc'D's",
+//   //     "createdAt": "2020-11-23T23:37:08.091Z",
+//   //     "updatedAt": "2020-11-23T23:37:08.091Z"
+//   // },
+//   // "TxnUsersIncludeCurrentUser": [
+//   //   {
+//   //       "userId": 1,
+//   //       "transactionId": 1,
+//   //       "amount": "12.5",
+//   //       "createdAt": "2020-11-23T23:37:08.163Z",
+//   //       "updatedAt": "2020-11-23T23:37:08.163Z",
+//   //       "User": {
+//   //           "id": 1,
+//   //           "username": "Demo-lition"
+//   //       }
+//   //   },
+//   // all transactions that include current user
+//   // transactionActivity,
+//   // "transactionActivity": [
+//   //   {
+//   //     "id": 1,
+//   //     "createdBy": 1,
+//   //     "paidBy": 1,
+//   //     "amount": "25",
+//   //     "title": "One Mc'D's",
+//   //     "createdAt": "2020-11-23T23:37:08.091Z",
+//   //     "updatedAt": "2020-11-23T23:37:08.091Z"
+//   // },
+// };
 
 // const transactions = await Transaction.findAll({
 //   where: {
