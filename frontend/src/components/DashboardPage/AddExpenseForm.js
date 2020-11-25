@@ -1,9 +1,4 @@
 const AddExpenseForm = ({ onClose }) => {
-  const date = new Date();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const year = date.getFullYear();
-
   return (
     <div className="main-expense-container">
       <div className="modal-title-container">
@@ -30,7 +25,8 @@ const AddExpenseForm = ({ onClose }) => {
           </select>
         </div>
         <div>Transaction will be split evenly</div>
-        <div>{`${month + "-" + day + "-" + year}`}</div>
+        <label></label>
+        <input type="date"></input>
       </div>
       <div className="footer-buttons-container">
         <button onClick={() => onClose()}>Cancel</button>

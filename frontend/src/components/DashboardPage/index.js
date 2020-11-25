@@ -39,11 +39,15 @@ const DashboardPage = () => {
     const populateData = () => {
       if (data.balances) {
         balances = data.balances.balancesByUserId;
-        console.log("first balances", balances);
         users = data.balances.usersById;
 
         for (let userId in balances) {
           if (balances[userId] < 0) {
+            console.log("balances", balances);
+            console.log("balance", balances[userId]);
+            console.log("Users", users);
+            console.log("users[userId]", users[userId]);
+            console.log("USERNAME", users[userId].username);
             owe[userId] = {
               balance: balances[userId],
               name: users[userId].username,
@@ -56,6 +60,8 @@ const DashboardPage = () => {
             };
           }
         }
+
+        console.log("users", users);
 
         oweArr = Object.values(owe);
         owedArr = Object.values(owed);

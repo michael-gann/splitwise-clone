@@ -44,7 +44,9 @@ router.get(
       await User.findAll({
         where: {
           id: {
-            [Op.in]: transactionUsers.map((tu) => tu.userId),
+            [Op.in]: transactionUsers
+              .map((tu) => tu.userId)
+              .concat(myTransactions.map((t) => t.paidBy)),
           },
         },
       })
@@ -144,8 +146,6 @@ router.get(
       }
       return map;
     }, {});
-
-    console.log(transactionUsersByTransactionId);
 
     // All the transactions that I have a share in
     const myTransactions = await Transaction.findAll({

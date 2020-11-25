@@ -48,7 +48,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          userId: 1,
+          userId: 3,
           transactionId: 4,
           amount: 5.125,
           createdAt: new Date(),
