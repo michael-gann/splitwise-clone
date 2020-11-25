@@ -169,7 +169,7 @@ router.get(
           amount,
           transactionId: t.id,
         };
-      })
+      }) // sort by transactionId (most recent)
       .sort((a, b) => b.transactionId - a.transactionId); // DESC
 
     res.send(result);

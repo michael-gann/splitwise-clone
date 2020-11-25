@@ -1,11 +1,38 @@
 .main-nav-container {
   position: sticky;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: rgb(21, 214, 150);
   box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   top: 0;
+  height: 40px;
 }
+
+.logo {
+  height: 40px;
+  width: 150px;
+}
+
+.logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+}
+
+.sidebar {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+
+.sidebar:hover {
+  background-color: rgb(21, 231, 161);
+}
+
 
 .home-link {
   align-self: center;

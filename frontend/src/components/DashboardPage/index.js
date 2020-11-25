@@ -7,6 +7,7 @@ import "./DashboardPage.css";
 import * as transactionActions from "../../store/transaction";
 import YouAreOwed from "./YouAreOwed";
 import YouOwe from "./YouOwe";
+import AddExpenseModal from "./AddExpenseModal";
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ const DashboardPage = () => {
         <div className="title-container">
           <div className="dashboard-title">Dashboard</div>
           <div className="button-container">
-            <button>Add an expense</button>
+            <AddExpenseModal />
             <button className="settle-up">Settle up</button>
           </div>
         </div>

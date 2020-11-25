@@ -1,0 +1,16 @@
+#navbar {
+  position: absolute;
+  width: 150px;
+  height:300px;
+  transform: translateX(-150px);
+  transition: transform 400ms ease-in;
+  background-color: white;
+  border: .01px solid grey;
+  margin-top: 20px;
+}
+#navbar.slideIn {
+  transform: translateX(0);
+}
+#navbar.slideOut {
+  transform: translateX(-150px);
+}

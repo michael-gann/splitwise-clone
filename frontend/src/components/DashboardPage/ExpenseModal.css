@@ -1,0 +1,128 @@
+.main-expense-container {
+  display: flex;
+  flex-direction:column;
+  width: 400px;
+  border-radius: 10px;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+}
+
+.main-expense-container input:focus {
+ outline: none;
+}
+
+.modal-title-container {
+display: flex;
+width: 400px;
+height: 40px;
+margin-bottom: 15px;
+border-top-right-radius: 9px;
+border-top-left-radius: 9px;
+}
+
+.add-expense {
+align-self: center;
+font-family: 'Rubik', sans-serif;
+font-size: 25px;
+}
+
+.x-close {
+  align-self: flex-start;
+  text-align: right;
+}
+
+.modal-title-container div {
+  width:200px;
+}
+
+.select-users-container {
+  padding: 10px;
+  display: flex;
+  background-color: white;
+
+}
+
+.select-users-container input {
+  outline: none;
+  border:none;
+  border-bottom: solid .2px lightslategrey;
+  width: 180px;
+  margin-left: 10px;
+  background-color: white;
+}
+
+.description-container {
+  display:flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: white;
+}
+
+.description-container input {
+  border: none;
+  border-bottom: solid .2px lightslategrey;
+  height: 22px;
+  font-size: 16px;
+  background-color: white;
+  width: 200px;
+  align-self: center;
+  text-align: center;
+}
+
+.amount-container {
+display: flex;
+justify-content: center;
+padding: 10px;
+background-color: white;
+}
+
+.amount-container input {
+  border: none;
+  border-bottom:solid .2px lightslategray;
+  height: 28px;
+  font-size: 26px;
+  width: 100px;
+  text-align: center;
+  background-color: white;
+}
+
+.amount-container label {
+  font-size: 22px;
+  background-color: white;
+}
+
+.paid-by-container {
+  display:flex;
+  flex-direction: column;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.paid-by {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background-color: white;
+}
+
+.footer-buttons-container {
+  display:flex;
+  justify-content: flex-end;
+  background-color:  rgb(19, 199, 115);
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+
+.footer-buttons-container button {
+  align-self: flex-end;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  margin: 4px;
+}
+
+#modal-content {
+border-radius: 10px
+}

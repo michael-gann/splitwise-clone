@@ -8,81 +8,30 @@ import RecentTransactions from "./RecentTransactions";
 
 const RecentActivityPage = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.transaction.history);
+  const data = useSelector((state) => state.balances.activity);
   const user = useSelector((state) => state.session.user);
-  const [thing, setThing] = useState(0);
+  // const [thing, setThing] = useState(0);
 
   useEffect(() => {
     return dispatch(transactionActions.recentActivity());
   }, [dispatch]);
 
   useEffect(() => {
-    let activity = {};
-    let activityArr = [];
-
     const getData = () => {
-      if (data !== null) {
-        const { transactions } = data;
-        const { users } = data;
-
-        for (const transaction of transactions) {
-          activity[transaction.id] = {
-            currentUser: user.username,
-            total: transaction.amount / 2,
-            title: transaction.title,
-            fromUser: users[transaction.from].username,
-            toUser: users[transaction.to].username,
-            date: transaction.createdAt,
-          };
-        }
-
-        activityArr = Object.values(activity);
-        console.log("activityArr to send to component", activityArr);
-        return activityArr;
+      if (data) {
+        console.log(data);
       }
     };
 
     getData();
-  }, [data, user.username]);
-  // const [recentData, setRecentData] = useState([]);
-  // const dispatch = useDispatch();
-  // const data = useSelector((state) => state.transaction.history);
-  // const user = useSelector((state) => state.session.user);
-
-  // console.log("user info", user);
-
-  // const userId = user.id;
-
-  // useEffect(() => {
-  //   if (data === null) {
-  //     return dispatch(transactionActions.recentActivity());
-  //   }
-  // }, [dispatch, data]);
-
-  // const usernameChecker = (currentUser, transaction) => {
-  //   let otherUser;
-
-  //   if (transaction.to === currentUser) {
-  //     otherUser = transaction.from;
-  //   } else {
-  //     otherUser = transaction.to;
-  //   }
-
-  //   return otherUser;
-  // };
-
-  // let activityNotUndef;
-
-  // useEffect(() => {}, [recentData, data, user.username]);
-
-  // console.log("recentData----", recentData);
+  }, [data]);
 
   return (
     <div className="main-wrapper">
       <div className="activity-wrapper">
         <div className="recent-activity-title">Recent Activity</div>
         <div className="recent-activity">
-          <RecentTransactions></RecentTransactions>
+          <RecentTransactions txn={data}></RecentTransactions>
         </div>
       </div>
     </div>
@@ -90,3 +39,38 @@ const RecentActivityPage = () => {
 };
 
 export default RecentActivityPage;
+
+// Old Logic
+
+// const [recentData, setRecentData] = useState([]);
+// const dispatch = useDispatch();
+// const data = useSelector((state) => state.transaction.history);
+// const user = useSelector((state) => state.session.user);
+
+// console.log("user info", user);
+
+// const userId = user.id;
+
+// useEffect(() => {
+//   if (data === null) {
+//     return dispatch(transactionActions.recentActivity());
+//   }
+// }, [dispatch, data]);
+
+// const usernameChecker = (currentUser, transaction) => {
+//   let otherUser;
+
+//   if (transaction.to === currentUser) {
+//     otherUser = transaction.from;
+//   } else {
+//     otherUser = transaction.to;
+//   }
+
+//   return otherUser;
+// };
+
+// let activityNotUndef;
+
+// useEffect(() => {}, [recentData, data, user.username]);
+
+// console.log("recentData----", recentData);
