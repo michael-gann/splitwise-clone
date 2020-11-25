@@ -24,7 +24,7 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   justify-content: center;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(228, 228, 228);
   border-bottom: .1px solid grey;
 }
 
@@ -40,11 +40,45 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 .button-container {
   width: 250px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 
-.settle-up {
+/* .settle-up {
   margin-right: 15px;
+  background-color: rgb(252, 136, 107)
+}
+
+.settle-up:hover,
+.settle-up:focus {
+    background:rgb(223, 93, 61)
+}
+
+.settle-up:focus {
+  outline: 1px solid rgb(56, 163, 165);
+  outline-offset: -4px;
+} */
+
+.add-expense-button {
+  background-color: rgb(238, 108, 77);
+  padding: 10px 5px;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid rgb(238, 108, 77);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 250ms ease-in-out,
+                transform 150ms ease;
+}
+
+.add-expense-button:hover,
+.add-expense-button:focus {
+    background:rgb(226, 85, 49)
+}
+
+.add-expense-button:focus {
+  outline: 1px solid rgb(56, 163, 165);
+  outline-offset: -4px;
 }
 
 .balances-container {

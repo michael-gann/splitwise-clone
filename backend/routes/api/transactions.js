@@ -12,71 +12,97 @@ router.get(
 
     const userId = parseInt(user.id, 10);
 
-    // query for TransactionUsers that involve currentUser
-    const myTxnUsers = await TransactionUser.findAll({
-      include: [
-        {
-          model: Transaction,
-          include: [User],
+    // Transaction IDs that I have a share in
+    const myTransactionIds = (
+      await TransactionUser.findAll({
+        where: {
+          userId: userId,
         },
-      ],
-      where: {
-        userId: userId,
-      },
-    });
+      })
+    ).map((tu) => tu.transactionId);
 
-    // filter and map over paidBy to get userId's that are not current user to
-    const paidTransactionIds = myTxnUsers
-      .filter((obj) => obj.Transaction === userId)
-      .map((obj) => obj.Transaction.id);
-
-    // query for users that have a balance with current user
-    const incomingTxnUsers = await TransactionUser.findAll({
-      include: [User],
+    // All the transactionUsers that have a share in the transactions
+    // that I have a share in
+    const transactionUsers = await TransactionUser.findAll({
       where: {
         transactionId: {
-          [Op.in]: paidTransactionIds,
-        },
-        userId: {
-          [Op.not]: userId,
+          [Op.in]: myTransactionIds,
         },
       },
     });
 
-    const usersById = {};
-    const balancesByUserId = {};
+    // All the transactions that I have a share in
+    const myTransactions = await Transaction.findAll({
+      where: {
+        id: {
+          [Op.in]: myTransactionIds,
+        },
+      },
+    });
 
-    for (const transactionUser of myTxnUsers) {
-      if (transactionUser.Transaction.paidBy !== userId) {
-        if (balancesByUserId[transactionUser.Transaction.paidBy]) {
-          balancesByUserId[transactionUser.Transaction.paidBy] -= parseFloat(
-            transactionUser.amount
-          );
+    const usersById = (
+      await User.findAll({
+        where: {
+          id: {
+            [Op.in]: transactionUsers.map((tu) => tu.userId),
+          },
+        },
+      })
+    ).reduce((map, user) => {
+      map[user.id] = user;
+      return map;
+    }, {});
+
+    const transactionUsersByTransactionId = transactionUsers.reduce(
+      (map, tu) => {
+        if (map[tu.transactionId]) {
+          map[tu.transactionId][tu.userId] = tu;
         } else {
-          balancesByUserId[transactionUser.Transaction.paidBy] =
-            -1 * parseFloat(transactionUser.amount);
+          map[tu.transactionId] = { [tu.userId]: tu };
+        }
+        return map;
+      },
+      {}
+    );
+
+    const balancesByUserId = {};
+    for (const transaction of myTransactions) {
+      if (transaction.paidBy !== userId) {
+        if (!balancesByUserId[transaction.paidBy]) {
+          balancesByUserId[transaction.paidBy] =
+            -1 *
+            parseFloat(
+              transactionUsersByTransactionId[transaction.id][userId].amount
+            );
+        } else {
+          balancesByUserId[transaction.paidBy] -= parseFloat(
+            transactionUsersByTransactionId[transaction.id][userId].amount
+          );
+        }
+      } else {
+        for (const tu of Object.values(
+          transactionUsersByTransactionId[transaction.id]
+        )) {
+          if (tu.userId !== userId) {
+            if (!balancesByUserId[tu.userId]) {
+              balancesByUserId[tu.userId] = parseFloat(
+                transactionUsersByTransactionId[transaction.id][tu.userId]
+                  .amount
+              );
+            } else {
+              balancesByUserId[tu.userId] += parseFloat(
+                transactionUsersByTransactionId[transaction.id][tu.userId]
+                  .amount
+              );
+            }
+          }
         }
       }
-      usersById[transactionUser.Transaction.User.id] =
-        transactionUser.Transaction.User;
-    }
-
-    for (transactionUser of incomingTxnUsers) {
-      if (balancesByUserId[transactionUser.userId]) {
-        balancesByUserId[transactionUser.userId] += parseFloat(
-          transactionUser.amount
-        );
-      } else {
-        balancesByUserId[transactionUser.userId] = parseFloat(
-          transactionUser.amount
-        );
-      }
-      usersById[transactionUser.User.id] = transactionUser.User;
     }
 
     const result = {
       balancesByUserId,
-      users: usersById,
+      usersById,
     };
 
     res.send(result);
@@ -177,115 +203,3 @@ router.get(
 );
 
 module.exports = router;
-
-// OLD LOGIC
-
-// const transactionIds = TxnUsersIncludeCurrentUser.map(
-//   (txnUser) => txnUser.transactionId
-// );
-
-// const transactionActivity = await Transaction.findAll({
-//   where: {
-//     id: {
-//       [Op.in]: transactionIds,
-//     },
-//   },
-//   order: [["createdAt", "ASC"]],
-// });
-
-// // const users = await User.findAll({});
-
-// // const usersMap = {};
-// // for (const user of users) {
-// //   usersMap[user.id] = user;
-// // }
-
-// const result = {
-//   // only current users transactionusers
-//   myTxnUsers,
-//   // all transactionUsers that include current User
-//   // TxnUsersIncludeCurrentUser,
-//   // "transactionActivity": [
-//   //   {
-//   //     "id": 1,
-//   //     "createdBy": 1,
-//   //     "paidBy": 1,
-//   //     "amount": "25",
-//   //     "title": "One Mc'D's",
-//   //     "createdAt": "2020-11-23T23:37:08.091Z",
-//   //     "updatedAt": "2020-11-23T23:37:08.091Z"
-//   // },
-//   // "TxnUsersIncludeCurrentUser": [
-//   //   {
-//   //       "userId": 1,
-//   //       "transactionId": 1,
-//   //       "amount": "12.5",
-//   //       "createdAt": "2020-11-23T23:37:08.163Z",
-//   //       "updatedAt": "2020-11-23T23:37:08.163Z",
-//   //       "User": {
-//   //           "id": 1,
-//   //           "username": "Demo-lition"
-//   //       }
-//   //   },
-//   // all transactions that include current user
-//   // transactionActivity,
-//   // "transactionActivity": [
-//   //   {
-//   //     "id": 1,
-//   //     "createdBy": 1,
-//   //     "paidBy": 1,
-//   //     "amount": "25",
-//   //     "title": "One Mc'D's",
-//   //     "createdAt": "2020-11-23T23:37:08.091Z",
-//   //     "updatedAt": "2020-11-23T23:37:08.091Z"
-//   // },
-// };
-
-// const transactions = await Transaction.findAll({
-//   where: {
-//     [Op.or]: {
-//       to: userId,e
-//       from: userId,
-//     },
-//   },
-// });
-
-// const users = await User.findAll({
-//   where: {
-//     id: {
-//       [Op.in]: transactions
-//         .map((transaction) => transaction.from)
-//         .concat(transactions.map((transaction) => transaction.to)),
-//     },
-//   },
-// });
-
-// let transactionSummaryByUserId = {};
-
-// // Set object to send to front end to access balances and transactions by other users relating to current user
-// for (let transaction of transactions) {
-//   let otherUserId;
-//   let amount = transaction.amount / 2;
-//   if (transaction.to === userId) {
-//     otherUserId = transaction.from;
-//   } else {
-//     otherUserId = transaction.to;
-//     amount = -1 * amount;
-//   }
-
-//   if (!transactionSummaryByUserId[otherUserId]) {
-//     transactionSummaryByUserId[otherUserId] = {
-//       name: usersMap[otherUserId].username,
-//       balance: amount,
-//       transactions: [transaction],
-//     };
-//   } else {
-//     transactionSummaryByUserId[otherUserId].balance += amount;
-//     transactionSummaryByUserId[otherUserId].transactions.push(transaction);
-//   }
-// }
-
-// console.log(
-//   "transaction summary -----------------",
-//   transactionSummaryByUserId
-// );

@@ -34,7 +34,7 @@ const Navigation = ({ isLoaded }) => {
     <nav className="main-nav-container">
       <div className="sidebar-menu">
         <button onClick={handleClick} className="sidebar">
-          <i class="fas fa-bars"></i>
+          <i className="fas fa-bars"></i>
         </button>
         <Sidebar visible={show}></Sidebar>
       </div>

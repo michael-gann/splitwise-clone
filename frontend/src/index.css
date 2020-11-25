@@ -1,11 +1,12 @@
 /* TODO Add site wide styles */
 body {
-  background-color: rgb(251, 251, 251);
+  background-color: rgb(245, 250, 245);
   width: 100vw;
   height: 100vw;
   margin: 0;
   font-family: 'Karla', sans-serif;
   font-size: 16px;
+  color: rgb(26, 50, 85)
 }
 
 html {

@@ -110,7 +110,6 @@ background-color: white;
 .footer-buttons-container {
   display:flex;
   justify-content: flex-end;
-  background-color:  rgb(19, 199, 115);
   border-bottom-left-radius: 9px;
   border-bottom-right-radius: 9px;
 }

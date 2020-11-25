@@ -18,9 +18,9 @@ const RecentTransactions = ({ txn }) => {
       <div>
         {txn.map((userTxn, idx) => {
           return userTxn.amount > 0 && userTxn.createdBy !== user.username ? (
-            <div
-              key={idx}
-            >{`${userTxn.createdBy} added ${userTxn.title} and you get back $${userTxn.amount}`}</div>
+            <div key={idx}>{`${userTxn.createdBy} added ${
+              userTxn.title
+            } and you get back $${userTxn.amount.toFixed(2)}`}</div>
           ) : (
             <div key={idx}>{`${
               user.username !== userTxn.createdBy

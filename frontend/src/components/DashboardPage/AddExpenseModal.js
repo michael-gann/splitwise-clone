@@ -9,7 +9,9 @@ function AddExpenseModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add an expense</button>
+      <button className="add-expense-button" onClick={() => setShowModal(true)}>
+        Add an expense
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddExpenseForm onClose={() => setShowModal(false)} />

@@ -5,6 +5,18 @@ const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const { ValidationError } = require("sequelize");
+const favicon = require("serve-favicon");
+const path = require("path");
+
+if (process.env.NODE_ENV === "production") {
+  // Serve the frontend's index.html file at the root route
+  router.get("/", (req, res) => {
+    res.cookie("XSRF-TOKEN", req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, "../../frontend", "build", "index.html")
+    );
+  });
+}
 
 const routes = require("./routes");
 const { environment } = require("./config");
@@ -16,7 +28,15 @@ app.use(morgan("dev"));
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.static("/frontend/public"));
+app.use(express.static("../../frontend/build"));
+app.use(favicon(path.join(__dirname, "..", "/frontend/public", "favicon.ico")));
+
+app.get(/^(?!\/?api).*/, (req, res) => {
+  res.cookie("XSRF-TOKEN", req.csrfToken());
+  res.sendFile(
+    path.resolve(__dirname, "../../frontend", "build", "index.html")
+  );
+});
 
 // Security Middleware
 if (!isProduction) {
