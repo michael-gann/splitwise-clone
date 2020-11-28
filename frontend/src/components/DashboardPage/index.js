@@ -111,7 +111,7 @@ const DashboardPage = () => {
           </div>
           <div className="totals-container">
             <div>you are owed</div>
-            <div className="owed-total">{`$${owedSum}`}</div>
+            <div className="owed-total">{`$${owedSum.toFixed(2)}`}</div>
           </div>
         </div>
         <div className="owe-or-owed-container">

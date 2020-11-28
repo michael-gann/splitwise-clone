@@ -13,6 +13,9 @@ const AddExpenseForm = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setOtherUsers(users.split(", "));
+
     const expense = {
       users: otherUsers,
       title: description,
@@ -20,8 +23,6 @@ const AddExpenseForm = ({ onClose }) => {
       paidBy: paidBy,
       date: date,
     };
-
-    setOtherUsers(users.split(", "));
 
     const res = await fetch("/api/transactions/expense", {
       method: "POST",
@@ -49,6 +50,7 @@ const AddExpenseForm = ({ onClose }) => {
         <input
           value={users}
           onChange={(e) => setUsers(e.target.value)}
+          onBlur={() => setOtherUsers(users.split(", "))}
           type="text"
           placeholder="enter name or email address"
         ></input>

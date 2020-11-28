@@ -28,7 +28,11 @@ const RecentTransactions = ({ txn }) => {
                 : "you added"
             } ${userTxn.title} and you ${
               userTxn.amount < 0 ? "owe" : "get back"
-            } $${userTxn.amount < 0 ? -userTxn.amount : userTxn.amount}`}</div>
+            } $${
+              userTxn.amount < 0
+                ? -userTxn.amount.toFixed(2)
+                : userTxn.amount.toFixed(2)
+            }`}</div>
           );
         })}
       </div>

@@ -217,6 +217,8 @@ router.post(
     otherUsers = formData.users;
     date = formData.date;
 
+    console.log("OTHERUSERS________", otherUsers);
+
     const paidById = (
       await User.findOne({
         where: {
@@ -262,6 +264,8 @@ router.post(
       shareAmountByUserId[userId] /= 100;
     }
 
+    console.log("amount before create----", amount);
+
     const newExpense = await Transaction.create({
       createdBy,
       paidBy: paidById,
@@ -271,7 +275,11 @@ router.post(
       updatedAt: new Date(),
     });
 
+    console.log("NEW EXPENSE-----", JSON.stringify(newExpense));
+
     let newTu = {};
+
+    console.log("SHAREAMOUNTBYUSERID", shareAmountByUserId);
 
     for (let user in shareAmountByUserId) {
       newTu[user] = {
@@ -280,6 +288,8 @@ router.post(
         amount: shareAmountByUserId[user],
       };
     }
+
+    console.log("newtu", newTu);
 
     const newTuArr = Object.values(newTu);
 
