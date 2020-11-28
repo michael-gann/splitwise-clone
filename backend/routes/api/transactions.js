@@ -202,4 +202,91 @@ router.get(
   })
 );
 
+router.post(
+  "/expense",
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+    const { formData } = req.body;
+
+    createdBy = user.id;
+    paidByString = formData.paidBy;
+    amount = Math.floor(parseFloat(formData.amount) * 100);
+    title = formData.title;
+
+    otherUsers = formData.users;
+    date = formData.date;
+
+    const paidById = (
+      await User.findOne({
+        where: {
+          username: paidByString,
+        },
+      })
+    ).id;
+
+    const userIds = (
+      await User.findAll({
+        where: {
+          username: {
+            [Op.in]: otherUsers,
+          },
+        },
+      })
+    )
+      .map((user) => user.id)
+      .concat([createdBy]);
+
+    const numUsers = userIds.length;
+    const share = Math.floor(amount / numUsers);
+    let shareAmountByUserId = {};
+    for (const id of userIds) {
+      shareAmountByUserId[id] = share;
+    }
+
+    let remainingAmount =
+      amount -
+      Object.values(shareAmountByUserId).reduce(
+        (sum, amount) => sum + amount,
+        0
+      );
+
+    let i = 0;
+    while (remainingAmount > 0) {
+      remainingAmount -= 1;
+      shareAmountByUserId[userIds[i % userIds.length]] += 1;
+      i += 1;
+    }
+
+    for (const userId in shareAmountByUserId) {
+      shareAmountByUserId[userId] /= 100;
+    }
+
+    const newExpense = await Transaction.create({
+      createdBy,
+      paidBy: paidById,
+      amount,
+      title,
+      createdAt: date,
+      updatedAt: new Date(),
+    });
+
+    let newTu = {};
+
+    for (let user in shareAmountByUserId) {
+      newTu[user] = {
+        userId: user,
+        transactionId: newExpense.id,
+        amount: shareAmountByUserId[user],
+      };
+    }
+
+    const newTuArr = Object.values(newTu);
+
+    const createdTu = await TransactionUser.bulkCreate(newTuArr);
+
+    res.send({ success: true });
+  })
+);
+
 module.exports = router;
