@@ -1,41 +1,59 @@
-// import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import DetailView from "./DetailView";
 
+import DetailView from "./DetailView";
 import "./RecentActivity.css";
 
 // import * as transactionActions from "../../store/transaction";
 
-const RecentTransactions = ({ txn }) => {
-  const user = useSelector((state) => state.session.user);
+const RecentTransactions = ({ txn, user }) => {
+  // const user = useSelector((state) => state.session.user);
+  const [showMenu, setShowMenu] = useState(false);
 
-  if (!txn) {
-    return null;
-  }
+  const showDetail = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeDetail = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener("click", closeDetail);
+
+    return () => document.removeEventListener("click", closeDetail);
+  }, [showMenu]);
 
   return (
     // go through and add divs around amounts to change color to red or green for owe or owed
     <>
-      <div>
-        {txn.map((userTxn, idx) => {
-          return userTxn.amount > 0 && userTxn.createdBy !== user.username ? (
-            <div key={idx}>{`${userTxn.createdBy} added ${
-              userTxn.title
-            } and you get back $${userTxn.amount.toFixed(2)}`}</div>
-          ) : (
-            <div key={idx}>{`${
-              user.username !== userTxn.createdBy
-                ? userTxn.createdBy + " added"
+      {txn.amount > 0 && txn.createdBy !== user.username ? (
+        <>
+          <div onClick={showDetail} className="recent-activity-items">
+            {`${txn.createdBy} added ${
+              txn.title
+            } and you get back $${txn.amount.toFixed(2)}`}
+          </div>
+          {showMenu && <DetailView txn={txn}></DetailView>}
+        </>
+      ) : (
+        <>
+          <div onClick={showDetail} className="recent-activity-items">
+            {`${
+              user.username !== txn.createdBy
+                ? txn.createdBy + " added"
                 : "you added"
-            } ${userTxn.title} and you ${
-              userTxn.amount < 0 ? "owe" : "get back"
-            } $${
-              userTxn.amount < 0
-                ? -userTxn.amount.toFixed(2)
-                : userTxn.amount.toFixed(2)
-            }`}</div>
-          );
-        })}
-      </div>
+            } ${txn.title} and you ${txn.amount < 0 ? "owe" : "get back"} $${
+              txn.amount < 0 ? -txn.amount.toFixed(2) : txn.amount.toFixed(2)
+            }`}
+          </div>
+          {showMenu && <DetailView txn={txn}></DetailView>}
+        </>
+      )}
     </>
   );
 };

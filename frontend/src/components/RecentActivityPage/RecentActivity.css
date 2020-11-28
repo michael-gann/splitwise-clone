@@ -29,5 +29,13 @@ max-width: 601px;
 
 .recent-activity {
   width: 600px;
+  display: flex;
+  flex-direction: column;
+}
 
+.recent-activity-items {
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  padding: 20px 5px;
 }
