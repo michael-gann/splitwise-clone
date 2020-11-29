@@ -8,6 +8,9 @@ const UserOptions = () => {
       <div>
         <NavLink to="/activity">Activity</NavLink>
       </div>
+      <div>
+        <NavLink to="/all">All Expenses</NavLink>
+      </div>
     </div>
   );
 };

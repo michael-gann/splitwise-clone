@@ -1,0 +1,117 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-expenses-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: rgb(248, 248, 248);
+width: auto;
+max-width: 601px;
+box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
+}
+
+.expenses-title {
+  width: auto;;
+  max-width: 150px;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: rgb(228, 228, 228);
+  border-bottom: .1px solid grey;
+  width: 100%;
+  max-width: 601px;
+  height: 80px;
+}
+
+.expense-detail {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.expense-details {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  box-sizing: border-box;
+  padding: 5px;
+  align-items: center;
+}
+
+.date-title-container {
+display: flex;
+width:250px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  width: 35px;
+
+}
+
+.month {
+  text-align: center;
+}
+
+.day  {
+text-align: center;
+}
+
+.title {
+font-weight: bold;
+font-size: large;
+align-self: center;
+margin-left: 15px;
+}
+
+.expenses-container {
+  display: flex;
+  width: 350px;
+}
+
+.expense-paid-by-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.expense-paid-by {
+  font-size: 12px;
+}
+
+.expense-total {}
+
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.user-info {
+  text-align: center;
+  font-size: 12px;
+}
+
+.amount {
+
+}
+
+.paid-by-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignUpFormPage";
 import Navigation from "./components/Navigation/index";
 import DashboardPage from "./components/DashboardPage";
 import RecentActivityPage from "./components/RecentActivityPage";
+import AllExpenses from "./components/AllExpenses";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/activity">
             <RecentActivityPage></RecentActivityPage>
+          </Route>
+          <Route path="/all">
+            <AllExpenses></AllExpenses>
           </Route>
         </Switch>
       )}
