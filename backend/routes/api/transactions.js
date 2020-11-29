@@ -217,8 +217,6 @@ router.post(
     otherUsers = formData.users;
     date = formData.date;
 
-    console.log("OTHERUSERS________", otherUsers);
-
     const paidById = (
       await User.findOne({
         where: {
@@ -264,8 +262,6 @@ router.post(
       shareAmountByUserId[userId] /= 100;
     }
 
-    console.log("amount before create----", amount);
-
     const newExpense = await Transaction.create({
       createdBy,
       paidBy: paidById,
@@ -275,11 +271,7 @@ router.post(
       updatedAt: new Date(),
     });
 
-    console.log("NEW EXPENSE-----", JSON.stringify(newExpense));
-
     let newTu = {};
-
-    console.log("SHAREAMOUNTBYUSERID", shareAmountByUserId);
 
     for (let user in shareAmountByUserId) {
       newTu[user] = {
@@ -289,13 +281,108 @@ router.post(
       };
     }
 
-    console.log("newtu", newTu);
-
     const newTuArr = Object.values(newTu);
 
     const createdTu = await TransactionUser.bulkCreate(newTuArr);
 
     res.send({ success: true });
+  })
+);
+
+router.get(
+  "/all",
+  // restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req.body;
+
+    const userId = user.id;
+
+    const myTransactionIds = (
+      await TransactionUser.findAll({
+        where: {
+          userId: userId,
+        },
+      })
+    ).map((tu) => tu.transactionId);
+
+    // All the transactionUsers that have a share in the transactions
+    // that I have a share in
+    const transactionUsersByTransactionId = (
+      await TransactionUser.findAll({
+        where: {
+          transactionId: {
+            [Op.in]: myTransactionIds,
+          },
+        },
+      })
+    ).reduce((map, tu) => {
+      if (map[tu.transactionId]) {
+        map[tu.transactionId][tu.userId] = tu;
+      } else {
+        map[tu.transactionId] = { [tu.userId]: tu };
+      }
+      return map;
+    }, {});
+
+    console.log(JSON.stringify(transactionUsersByTransactionId));
+
+    // All the transactions that I have a share in
+    const myTransactions = await Transaction.findAll({
+      where: {
+        id: {
+          [Op.in]: myTransactionIds,
+        },
+      },
+    });
+
+    // All the users that created the transactions I'm involved in
+    const createdUserById = (
+      await User.findAll({
+        where: {
+          id: {
+            [Op.in]: myTransactions.map((t) => t.createdBy),
+          },
+        },
+      })
+    ).reduce((map, user) => {
+      map[user.id] = user;
+      return map;
+    }, {});
+
+    // creating object of useable info
+    const result = myTransactions
+      .map((t) => {
+        let amount = 0;
+        if (t.paidBy === userId) {
+          for (const tu of Object.values(
+            transactionUsersByTransactionId[t.id]
+          )) {
+            if (tu.userId !== userId) {
+              amount += parseFloat(tu.amount);
+            }
+          }
+        } else {
+          amount =
+            -1 *
+            parseFloat(transactionUsersByTransactionId[t.id][userId].amount);
+        }
+        const createdByUsername = createdUserById[t.createdBy].username;
+
+        // DON'T FORGET TO CHANGE TOTAL LOGIC AFTER DB IS CHANGED TO CENTS
+
+        return {
+          createdBy: createdByUsername,
+          paidBy: createdUserById[t.paidBy].username,
+          title: t.title,
+          total: t.amount > 800 ? t.amount / 100 : t.amount,
+          userShare: amount,
+          date: t.createdAt.toDateString(),
+          transactionId: t.id,
+        };
+      }) // sort by transactionId (most recent)
+      .sort((a, b) => b.transactionId - a.transactionId); // DESC
+
+    res.send({ result });
   })
 );
 

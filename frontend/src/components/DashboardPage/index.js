@@ -16,7 +16,9 @@ const DashboardPage = () => {
   const [owedSum, setOwedSum] = useState(0);
   const [oweArr, setOweArr] = useState([]);
   const [owedArr, setOwedArr] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [owe, setOwe] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [owed, setOwed] = useState({});
 
   useEffect(() => {
@@ -43,11 +45,6 @@ const DashboardPage = () => {
 
         for (let userId in balances) {
           if (balances[userId] < 0) {
-            console.log("balances", balances);
-            console.log("balance", balances[userId]);
-            console.log("Users", users);
-            console.log("users[userId]", users[userId]);
-            console.log("USERNAME", users[userId].username);
             owe[userId] = {
               balance: balances[userId],
               name: users[userId].username,
@@ -61,16 +58,14 @@ const DashboardPage = () => {
           }
         }
 
-        console.log("users", users);
-
         oweArr = Object.values(owe);
         owedArr = Object.values(owed);
 
         if (oweArr) {
-          oweSum = oweArr.reduce((accum, el) => accum + el.balance, 0);
+          oweSum = oweArr.reduce((sum, el) => sum + el.balance, 0);
         }
         if (owedArr) {
-          owedSum = owedArr.reduce((accum, el) => accum + el.balance, 0);
+          owedSum = owedArr.reduce((sum, el) => sum + el.balance, 0);
         }
       }
     };
@@ -81,9 +76,6 @@ const DashboardPage = () => {
     setOwedSum(owedSum);
     setOweArr(oweArr);
     setOwedArr(owedArr);
-    console.log("owe'-----", owe);
-    console.log("owed'-----", owed);
-    console.log("BALANCES!---------", balances);
   }, [data.balances]);
 
   // console.log("MY STATE SUM----", oweSum, owedSum, oweArr, owedArr, owe, owed);
@@ -111,7 +103,9 @@ const DashboardPage = () => {
           </div>
           <div className="totals-container">
             <div>you are owed</div>
-            <div className="owed-total">{`$${owedSum.toFixed(2)}`}</div>
+            <div className="owed-total">{`$${
+              owedSum ? owedSum.toFixed(2) : owedSum
+            }`}</div>
           </div>
         </div>
         <div className="owe-or-owed-container">
