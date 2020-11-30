@@ -4,7 +4,7 @@ import AddExpenseForm from "./AddExpenseForm";
 
 import "./ExpenseModal.css";
 
-function AddExpenseModal() {
+function AddExpenseModal({ setCount, count }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -14,7 +14,11 @@ function AddExpenseModal() {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddExpenseForm onClose={() => setShowModal(false)} />
+          <AddExpenseForm
+            setCount={setCount}
+            count={count}
+            onClose={() => setShowModal(false)}
+          />
         </Modal>
       )}
     </>

@@ -10,7 +10,7 @@
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
+/* align-items: center; */
 background-color: rgb(248, 248, 248);
 width: auto;
 max-width: 601px;
@@ -18,16 +18,21 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 }
 
 .expenses-title {
-  width: auto;;
-  max-width: 150px;
+  display: flex;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
   font-size: 32px;
   font-weight: bold;
   padding: 5px;
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(4, 57, 94);
   border-bottom: .1px solid grey;
   width: 100%;
   max-width: 601px;
   height: 80px;
+  color: whitesmoke;
 }
 
 .expense-detail {
@@ -61,10 +66,11 @@ width:250px;
 }
 
 .date {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 35px;
-
+  margin-left: 5px;
 }
 
 .month {
@@ -75,11 +81,14 @@ width:250px;
 text-align: center;
 }
 
-.title {
-font-weight: bold;
-font-size: large;
-align-self: center;
-margin-left: 15px;
+.expense-title {
+  box-sizing: border-box;
+  margin-left: 40px;
+  font-weight: bold;
+  font-size: large;
+  align-self: center;
+  min-width: 200px;
+  width: 100%;
 }
 
 .expenses-container {
@@ -114,8 +123,12 @@ margin-left: 15px;
   font-size: 12px;
 }
 
-.amount {
+.amount-owe {
+  color: red
+}
 
+.amount-owed {
+  color: green
 }
 
 .paid-by-user {
@@ -198,4 +211,22 @@ margin-left: 15px;
   height:50px;
   border-radius: 5px;
   border-color: grey
+}
+
+/* COMMENTS STYLING */
+.comment-wrapper {
+  padding: 5px;
+}
+
+.comment-content {
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.comment-user {
+font-size: 12px;
 }

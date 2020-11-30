@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import "./DashboardPage.css";
 
@@ -11,6 +11,7 @@ import AddExpenseModal from "./AddExpenseModal";
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const data = useSelector((state) => state.balances);
   const [oweSum, setOweSum] = useState(0);
   const [owedSum, setOwedSum] = useState(0);
@@ -20,10 +21,11 @@ const DashboardPage = () => {
   const [owe, setOwe] = useState({});
   // eslint-disable-next-line no-unused-vars
   const [owed, setOwed] = useState({});
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     return dispatch(transactionActions.balances());
-  }, [dispatch]);
+  }, [dispatch, count]);
 
   useEffect(() => {
     let owe = {};
@@ -78,6 +80,8 @@ const DashboardPage = () => {
     setOwedArr(owedArr);
   }, [data.balances]);
 
+  if (!sessionUser) return <Redirect to="/" />;
+
   // console.log("MY STATE SUM----", oweSum, owedSum, oweArr, owedArr, owe, owed);
 
   return (
@@ -86,24 +90,28 @@ const DashboardPage = () => {
         <div className="title-container">
           <div className="dashboard-title">Dashboard</div>
           <div className="button-container">
-            <AddExpenseModal />
-            {/* <button className="settle-up">Settle up</button> */}
+            <AddExpenseModal setCount={setCount} count={count} />
           </div>
         </div>
         <div className="balances-container">
           <div className="totals-container">
             <div>total balance</div>
-            <div className="balance-total">{`$${(owedSum + oweSum).toFixed(
-              2
-            )}`}</div>
+            <div
+              className={`${owedSum + oweSum > 0 ? "positive" : "negative"}`}
+            >{`$${(owedSum + oweSum > 0
+              ? owedSum + oweSum
+              : -(owedSum + oweSum)
+            ).toFixed(2)}`}</div>
           </div>
           <div className="totals-container">
             <div>you owe</div>
-            <div className="owe-total">{`$${(-oweSum).toFixed(2)}`}</div>
+            <div
+              className={`${-oweSum > 0 ? "negative" : "positive"}`}
+            >{`$${(-oweSum).toFixed(2)}`}</div>
           </div>
           <div className="totals-container">
             <div>you are owed</div>
-            <div className="owed-total">{`$${
+            <div className={`${owedSum > 0 ? "positive" : "negative"}`}>{`$${
               owedSum ? owedSum.toFixed(2) : owedSum
             }`}</div>
           </div>

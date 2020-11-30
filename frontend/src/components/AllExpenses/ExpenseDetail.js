@@ -1,6 +1,8 @@
 import { useState } from "react";
 import DetailView from "./DetailView";
 
+import "./AllExpenses.css";
+
 const ExpenseDetail = ({ expense, user, tid }) => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -17,7 +19,7 @@ const ExpenseDetail = ({ expense, user, tid }) => {
               <div className="month">{expense.date.month}</div>
               <div className="day">{expense.date.day}</div>
             </div>
-            <div className="title">{expense.title}</div>
+            <div className="expense-title">{expense.title}</div>
           </div>
           <div className="expenses-container">
             <div className="expense-paid-by-container">
@@ -35,14 +37,14 @@ const ExpenseDetail = ({ expense, user, tid }) => {
             {expense.paidBy !== user.username ? (
               <>
                 <div className="user-info">{`${expense.paidBy} lent you `}</div>
-                <div className="amount">{`$${expense.userShares
+                <div className={`amount-owe`}>{`$${expense.userShares
                   .find((us) => us.userId === user.id)
                   .amount.toFixed(2)}`}</div>
               </>
             ) : (
               <>
                 <div className="user-info">{`you get back `}</div>
-                <div className="amount">
+                <div className="amount-owed">
                   {`$${expense.userShares
                     .find((us) => us.userId === user.id)
                     .amount.toFixed(2)}`}

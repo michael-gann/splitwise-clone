@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation/index";
 import DashboardPage from "./components/DashboardPage";
 import RecentActivityPage from "./components/RecentActivityPage";
 import AllExpenses from "./components/AllExpenses";
+// import PageNotFound from "./components/PageNotFound/PageNotFound";
+// import Welcome from "./components/Welcome";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,9 @@ function App() {
           <Route path="/all">
             <AllExpenses></AllExpenses>
           </Route>
+          {/* <Route path="*">
+            <PageNotFound></PageNotFound>
+          </Route> */}
         </Switch>
       )}
     </>

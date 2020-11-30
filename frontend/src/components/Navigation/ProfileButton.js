@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import { Redirect } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    return <Redirect to="/" />;
   };
 
   return (
@@ -34,11 +36,11 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle" />
         {showMenu && (
           <ul className="profile-dropdown">
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <div onClick={logout}>Log Out</div>
-            </li>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+            <div>
+              <button onClick={logout}>Log Out</button>
+            </div>
           </ul>
         )}
       </button>

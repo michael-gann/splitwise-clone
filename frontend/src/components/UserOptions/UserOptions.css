@@ -1,5 +1,16 @@
 .options-div {
+  text-decoration: none;
   display: flex;
   flex-direction: column;
+  padding: 5px 10px;
+}
 
+.navlinks {
+  padding: 3px;
+
+}
+
+.clicked {
+  text-decoration: none;
+  color: green;
 }

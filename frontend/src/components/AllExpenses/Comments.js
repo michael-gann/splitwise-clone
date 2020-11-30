@@ -1,24 +1,16 @@
 const Comments = ({ transactionId, comments }) => {
+  if (!comments) return null;
   return (
     <>
       <div>
-        {comments &&
-          Object.values(comments).map((comment) => {
-            return (
-              <>
-                <div className="comment-content">
-                  {comment.transactionId === transactionId
-                    ? `${comment.content}`
-                    : null}
-                </div>
-                <div>
-                  {comment.transactionId === transactionId
-                    ? `${comment.user.username}`
-                    : null}
-                </div>
-              </>
-            );
-          })}
+        {comments[transactionId].map((comment) => {
+          return (
+            <div className="comment-wrapper" key={comment.content}>
+              <div className="comment-content">{comment.content}</div>
+              <div className="comment-user">{comment.user.username}</div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

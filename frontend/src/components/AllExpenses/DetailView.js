@@ -18,7 +18,7 @@ const DetailView = ({ expense, user, tid }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/comments", {
+    await fetch("/api/comments", {
       method: "POST",
       header: {
         "Content-Type": "application/json",
@@ -28,7 +28,9 @@ const DetailView = ({ expense, user, tid }) => {
 
     const changeLength = () => {
       setComment("");
-      setLength(Object.values(comments).length);
+      if (comments) {
+        setLength(Object.values(comments).length);
+      }
     };
     changeLength();
   };

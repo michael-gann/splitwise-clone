@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import "./AllExpenses.css";
 
@@ -22,6 +23,8 @@ const AllExpenses = () => {
       setDataAll(data.result);
     }
   }, [data]);
+
+  if (!user) return <Redirect to="/" />;
 
   return (
     <div className="wrapper">

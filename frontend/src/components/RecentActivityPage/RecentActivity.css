@@ -16,14 +16,16 @@ max-width: 601px;
 }
 
 .recent-activity-title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 32px;
   width: 100%;
   max-width:601px;
   height: 80px;
   display: flex;
   justify-content: center;
-  justify-content: space-between;
   align-items: center;
-  background-color: rgb(56, 163, 165);
+  background-color: rgb(4, 57, 94);
+  color: whitesmoke;
   border-bottom: .1px solid grey;
 }
 

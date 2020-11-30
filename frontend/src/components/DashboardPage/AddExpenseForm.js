@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import { fetch } from "../../store/csrf";
 
-const AddExpenseForm = ({ onClose }) => {
+const AddExpenseForm = ({ onClose, setCount, count }) => {
   const [otherUsers, setOtherUsers] = useState([]);
   const [users, setUsers] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +30,15 @@ const AddExpenseForm = ({ onClose }) => {
       },
       body: JSON.stringify({ formData: expense }),
     });
+
+    if (res.data.success) {
+      setCount(count + 1);
+    } else {
+      // error handling
+      return;
+    }
+
+    onClose();
   };
 
   return (
@@ -41,7 +49,7 @@ const AddExpenseForm = ({ onClose }) => {
     >
       <div className="modal-title-container">
         <div className="add-expense">Add an expense</div>
-        <div className="x-close">x</div>
+        {/* <div className="x-close">x</div> */}
       </div>
       <div className="select-users-container">
         <label>with you and</label>
@@ -71,14 +79,14 @@ const AddExpenseForm = ({ onClose }) => {
       </div>
       <div className="paid-by-container">
         <div className="paid-by">
-          <label>Paid by:</label>
+          <label>Paid by: </label>
           <input
             value={paidBy}
             onChange={(e) => setPaidBy(e.target.value)}
             type="text"
           ></input>
         </div>
-        <div>Transaction will be split evenly</div>
+        <div className="split-evenly">Transaction will be split evenly</div>
         <label></label>
         <input
           value={date}
@@ -87,8 +95,12 @@ const AddExpenseForm = ({ onClose }) => {
         ></input>
       </div>
       <div className="footer-buttons-container">
-        <button onClick={() => onClose()}>Cancel</button>
-        <button type="submit">Save</button>
+        <button className="cancel" onClick={() => onClose()}>
+          Cancel
+        </button>
+        <button className="save" type="submit">
+          Save
+        </button>
       </div>
     </form>
   );

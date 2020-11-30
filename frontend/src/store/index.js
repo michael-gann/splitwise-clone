@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 
 import sessionReducer from "./session";
 import transactionReducer from "./transaction";
-import commentsReducer, { comments } from "./comment";
+import commentsReducer from "./comment";
+import friendsReducer from "./friend";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   balances: transactionReducer,
   comments: commentsReducer,
+  friends: friendsReducer,
 });
 
 let enhancer;

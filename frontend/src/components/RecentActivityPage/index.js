@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import "./RecentActivity.css";
 
@@ -27,22 +28,7 @@ const RecentActivityPage = () => {
     getData();
   }, [data]);
 
-  // const showDetail = () => {
-  //   if (showMenu) return;
-  //   setShowMenu(true);
-  // };
-
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeDetail = () => {
-  //     setShowMenu(false);
-  //   };
-
-  //   document.addEventListener("click", closeDetail);
-
-  //   return () => document.removeEventListener("click", closeDetail);
-  // }, [showMenu]);
+  if (!user) return <Redirect to="/" />;
 
   if (!data) {
     return null;

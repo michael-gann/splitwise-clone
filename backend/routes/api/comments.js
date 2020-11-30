@@ -30,20 +30,29 @@ router.get(
       return map;
     }, {});
 
-    const commentsById = {};
-    const commentList = [];
+    const commentsByTransactionId = [];
 
     for (const comment of comments) {
-      commentsById[comment.id] = {
-        user: usersById[comment.userId],
-        content: comment.content,
-        transactionId: comment.transactionId,
-      };
+      if (commentsByTransactionId[comment.transactionId]) {
+        commentsByTransactionId[comment.transactionId].push({
+          user: usersById[comment.userId],
+          content: comment.content,
+          transactionId: comment.transactionId,
+        });
+      } else {
+        commentsByTransactionId[comment.transactionId] = [
+          {
+            user: usersById[comment.userId],
+            content: comment.content,
+            transactionId: comment.transactionId,
+          },
+        ];
+      }
     }
 
-    // console.log(commentsByTransactionId);
+    console.log("COMMENTS-------____-----", commentsByTransactionId);
 
-    res.send(commentsById);
+    res.send(commentsByTransactionId);
   })
 );
 
