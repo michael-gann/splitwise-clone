@@ -1,4 +1,5 @@
 # Splitwise Clone
+Splitwise is an app that allows you to keep track of expenses with friends. One person can pay for dinner or a night out and then add friends to an expense to keep track of who owes who money. 
 
 
 
@@ -7,29 +8,19 @@
 ## Features
 
 ### Friending
+Users can add friends who have an account created to keep track of expenses.
 
 
-### Bills
+### Expenses
+Users have can create expenses between multiple friends to keep track of how much money they owe a friend or are owed by a friend.
 
 
-### Transactions
+### Transaction History
+Users can see their transasction history to see who added them to an expense or who they've added to an expense.
 
 
-
-
-
-
-
-
-# Splitwise - Making splitting bills simpler
-
-
-
-### Table Of Contents:
--
--
--
--
+### Comments
+Users can comment on expenses to share their thoughts about any expense they are involved in.
 
 ## [Description]:
 Add description
