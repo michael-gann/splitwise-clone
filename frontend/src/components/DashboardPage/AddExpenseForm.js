@@ -31,8 +31,6 @@ const AddExpenseForm = ({ onClose }) => {
       },
       body: JSON.stringify({ formData: expense }),
     });
-
-    console.log(res);
   };
 
   return (

@@ -11,7 +11,7 @@ const RecentActivityPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.balances.activity);
   const user = useSelector((state) => state.session.user);
-  const [showMenu, setShowMenu] = useState(false);
+  // const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     return dispatch(transactionActions.recentActivity());
@@ -27,22 +27,22 @@ const RecentActivityPage = () => {
     getData();
   }, [data]);
 
-  const showDetail = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  // const showDetail = () => {
+  //   if (showMenu) return;
+  //   setShowMenu(true);
+  // };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeDetail = () => {
-      setShowMenu(false);
-    };
+  //   const closeDetail = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener("click", closeDetail);
+  //   document.addEventListener("click", closeDetail);
 
-    return () => document.removeEventListener("click", closeDetail);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeDetail);
+  // }, [showMenu]);
 
   if (!data) {
     return null;

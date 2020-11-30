@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .all-expenses-container {
@@ -37,6 +38,7 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 
 .expense-details {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
@@ -44,6 +46,13 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   box-sizing: border-box;
   padding: 5px;
   align-items: center;
+}
+
+.expense-details-inner {
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+
 }
 
 .date-title-container {
@@ -96,7 +105,7 @@ margin-left: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 100%;
 }
 
@@ -114,4 +123,79 @@ margin-left: 15px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+
+
+
+
+/* DETAIL CONTAINER STYLING */
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(248, 248, 248);
+  width: auto;
+  max-width: 601px;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
+}
+
+.detail-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  width: 600px;
+}
+
+.detail-title {
+  padding: 3px;
+  font-size:20px;
+  text-align: center;
+  width: 100%;
+  max-width: 200px;
+}
+
+.detail-amount {
+  padding: 2px;
+  font-size: 30px;
+}
+
+.createdby {
+  font-size: 12px;
+  padding: 2px;
+}
+
+.below-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-users-container {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.detail-users {}
+
+.detail-comments-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.detail-comments-container textarea {
+  font-family: 'Karla', sans-serif;
+  background-color: rgb(250, 250, 250);
+  width: 250px;
+  height:50px;
+  border-radius: 5px;
+  border-color: grey
 }

@@ -10,7 +10,7 @@ const Navigation = ({ isLoaded }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const [show, setShow] = useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setShow((show) => !show);
   };
 

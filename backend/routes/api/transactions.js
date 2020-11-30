@@ -128,6 +128,14 @@ router.get(
       })
     ).map((tu) => tu.transactionId);
 
+    const transactionUsers = await TransactionUser.findAll({
+      where: {
+        transactionId: {
+          [Op.in]: myTransactionIds,
+        },
+      },
+    });
+
     // All the transactionUsers that have a share in the transactions
     // that I have a share in
     const transactionUsersByTransactionId = (
@@ -417,24 +425,10 @@ router.get(
             userId: tu.userId,
             username,
             amount,
+            share: userId === tu.userId ? tu.amount : null,
           });
         }
 
-        // if (t.paidBy === userId) {
-        //   for (const tu of Object.values(
-        //     transactionUsersByTransactionId[t.id]
-        //   )) {
-        //     if (tu.userId !== userId) {
-        //       amount += parseFloat(tu.amount);
-        //       if (tu.transactionId === t.id)
-        //         otherUsers.push(usersById[tu.userId].username);
-        //     }
-        //   }
-        // } else {
-        //   amount =
-        //     -1 *
-        //     parseFloat(transactionUsersByTransactionId[t.id][userId].amount);
-        // }
         const createdByUsername = createdUserById[t.createdBy].username;
 
         return {

@@ -33,7 +33,8 @@ const AllExpenses = () => {
               <ExpenseDetail
                 id="expense-detail"
                 key={expense.transactionId}
-                className={`expense-${expense.transactionId}`}
+                tid={expense.transactionId}
+                const
                 expense={expense}
                 user={user}
               ></ExpenseDetail>
