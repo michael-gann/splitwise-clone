@@ -12,21 +12,20 @@ const RecentActivityPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.balances.activity);
   const user = useSelector((state) => state.session.user);
-  // const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     return dispatch(transactionActions.recentActivity());
   }, [dispatch]);
 
-  useEffect(() => {
-    const getData = () => {
-      if (data) {
-        console.log(data);
-      }
-    };
+  // useEffect(() => {
+  //   const getData = () => {
+  //     if (data) {
+  //       console.log(data);
+  //     }
+  //   };
 
-    getData();
-  }, [data]);
+  //   getData();
+  // }, [data]);
 
   if (!user) return <Redirect to="/" />;
 
@@ -55,38 +54,3 @@ const RecentActivityPage = () => {
 };
 
 export default RecentActivityPage;
-
-// Old Logic
-
-// const [recentData, setRecentData] = useState([]);
-// const dispatch = useDispatch();
-// const data = useSelector((state) => state.transaction.history);
-// const user = useSelector((state) => state.session.user);
-
-// console.log("user info", user);
-
-// const userId = user.id;
-
-// useEffect(() => {
-//   if (data === null) {
-//     return dispatch(transactionActions.recentActivity());
-//   }
-// }, [dispatch, data]);
-
-// const usernameChecker = (currentUser, transaction) => {
-//   let otherUser;
-
-//   if (transaction.to === currentUser) {
-//     otherUser = transaction.from;
-//   } else {
-//     otherUser = transaction.to;
-//   }
-
-//   return otherUser;
-// };
-
-// let activityNotUndef;
-
-// useEffect(() => {}, [recentData, data, user.username]);
-
-// console.log("recentData----", recentData);

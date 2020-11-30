@@ -36,10 +36,6 @@ router.get(
 
     const myFriends = {};
 
-    console.log(usersByUserId);
-
-    console.log(friendIds);
-
     for (const id of friendIds) {
       if (!myFriends[id]) {
         myFriends[id] = {
@@ -73,10 +69,6 @@ router.post(
       userId1: userId,
       userId2: friendId,
     });
-
-    console.log(friendId);
-
-    console.log(addFriend);
 
     res.send({ success: true });
   })

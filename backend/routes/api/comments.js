@@ -50,8 +50,6 @@ router.get(
       }
     }
 
-    console.log("COMMENTS-------____-----", commentsByTransactionId);
-
     res.send(commentsByTransactionId);
   })
 );

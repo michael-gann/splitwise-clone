@@ -3,7 +3,7 @@ const Comments = ({ transactionId, comments }) => {
   return (
     <>
       <div>
-        {comments[transactionId].map((comment) => {
+        {(comments[transactionId] ?? []).map((comment) => {
           return (
             <div className="comment-wrapper" key={comment.content}>
               <div className="comment-content">{comment.content}</div>

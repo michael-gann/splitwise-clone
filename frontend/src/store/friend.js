@@ -11,7 +11,6 @@ const getFriends = (friends) => {
 
 export const friends = () => async (dispatch) => {
   const res = await fetch("/api/friends");
-  console.log(res);
   dispatch(getFriends(res.data));
 
   return res;

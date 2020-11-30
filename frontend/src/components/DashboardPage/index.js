@@ -82,8 +82,6 @@ const DashboardPage = () => {
 
   if (!sessionUser) return <Redirect to="/" />;
 
-  // console.log("MY STATE SUM----", oweSum, owedSum, oweArr, owedArr, owe, owed);
-
   return (
     <div className="wrapper">
       <div className="dashboard-container">

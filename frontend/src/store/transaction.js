@@ -55,14 +55,10 @@ const transactionReducer = (
     case GET_BALANCES:
       newState = Object.assign({}, state);
       newState.balances = action.payload;
-      // console.log("state", newState);
-      // console.log("action", action.payload);
       return newState;
     case GET_ACTIVITY:
       newState = Object.assign({}, state);
       newState.activity = action.payload;
-      // console.log("state", newState);
-      // console.log("action", action.payload);
       return newState;
     case GET_ALL:
       newState = Object.assign({}, state);
