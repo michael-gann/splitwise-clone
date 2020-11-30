@@ -53,6 +53,11 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   align-items: center;
 }
 
+.expense-details:hover {
+  background-color: rgb(202, 199, 199);
+  cursor: pointer;
+}
+
 .expense-details-inner {
   display: flex;
   width: 600px;
