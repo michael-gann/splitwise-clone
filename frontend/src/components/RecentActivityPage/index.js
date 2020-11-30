@@ -27,7 +27,7 @@ const RecentActivityPage = () => {
   //   getData();
   // }, [data]);
 
-  if (!user) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/login" />;
 
   if (!data) {
     return null;

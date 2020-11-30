@@ -24,7 +24,7 @@ const AllExpenses = () => {
     }
   }, [data]);
 
-  if (!user) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/login" />;
 
   return (
     <div className="wrapper">
