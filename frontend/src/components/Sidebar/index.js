@@ -1,10 +1,10 @@
 import "./Sidebar.css";
 import UserOptions from "../UserOptions/index";
 
-const Sidebar = ({ visible }) => {
+const Sidebar = ({ visible, user }) => {
   return (
     <div id="navbar" className={visible ? "slideIn" : "slideOut"}>
-      <UserOptions></UserOptions>
+     { user ? <UserOptions></UserOptions> : <div> <a href="/login">Login</a></div> }
     </div>
   );
 };
