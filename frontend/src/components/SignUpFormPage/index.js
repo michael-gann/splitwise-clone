@@ -26,7 +26,7 @@ const SignupFormPage = () => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
     }
-    return setErrors(["Password and Confirm Password must match"]);
+    return setErrors(["Passwords must match"]);
   };
 
   return (
@@ -36,17 +36,17 @@ const SignupFormPage = () => {
           <ul className="signupErrors-ul">
             {errors.map((error, idx) => (
               <div className="signupErrors-div" key={idx}>
-                {error}
+                {error === "Invalid value" ? null : error}
               </div>
             ))}
           </ul>
-          <div className="usernamefields">
+          <div className="signup-usernamefields">
             <label>Username</label>
             <input
               type="text"
               name="username"
               id="username"
-              placeholder="i.e. John123"
+              placeholder="Jane123"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             ></input>
@@ -58,7 +58,7 @@ const SignupFormPage = () => {
               name="email"
               id="email"
               value={email}
-              placeholder="example@example.com"
+              placeholder="Jane@jane.io"
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
@@ -68,6 +68,7 @@ const SignupFormPage = () => {
               type="password"
               name="password"
               id="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
@@ -78,6 +79,7 @@ const SignupFormPage = () => {
               type="password"
               name="confirm-password"
               id="confirm-password"
+              placeholder="Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></input>

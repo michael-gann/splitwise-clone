@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
+  height: 100%;
 }
 
 
@@ -54,30 +55,30 @@
   width: 300px;
   height: 600px;
   font-family: 'Roboto Mono', monospace;
-  padding-bottom: 160px;
+  padding-bottom: 100px;
   border-radius: 25px;
   box-shadow: 4px 4px 15px 2px rgba(0, 0, 0, .2);
+  margin-bottom: 60px;
 }
 
 .signupErrors-div, .signupErrors-ul {
-  width: 250px;
+  width: 280px;
   color: red;
-  margin-right: 30px;
+  margin-right: 35px;
+  font-size: 12px;
+  text-align: center;
 }
 
-.signupErrors-ul {
-  height: 120px;
-}
 
 .signupErrors-div {
   padding: 2px;
 }
 
 
-.usernamefields, .passwordfields, .emailfields, .confirm-passwordfields{
+.signup-usernamefields, .passwordfields, .emailfields, .confirm-passwordfields{
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  /* padding: 10px; */
   font-weight: bold;
   font-size: 15px;
 }
@@ -85,19 +86,32 @@
 #username, #password, #confirm-password, #email, .signup-button {
   width: 225px;
   max-width: 100%;
-  height: 24px;
   border: .01px solid grey;
   font-size: 15px;
+}
+
+#username, #password, #confirm-password, #email {
+  padding: 5px 0;
+  font-size: 16px;
+  padding-left: 5px;
+  border-radius: 2px;
+}
+
+#username:focus, #password:focus, #confirm-password:focus, #email:focus {
+  outline: none;
+  outline: 1px solid gray;
 }
 
 .signup-button {
   border-radius: 0px;
   font-family: 'Roboto Mono', monospace;
-  height: 32px;
+  padding: 12px 0;
   font-size: 15px;
   margin-top: 10px;
+  border-radius: 3px;
 }
 
 .signup-button:hover {
   background-color: rgb(206, 205, 205);
+  cursor: pointer;
 }

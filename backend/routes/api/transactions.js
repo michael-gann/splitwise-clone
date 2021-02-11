@@ -70,7 +70,11 @@ router.get(
     const balancesByUserId = {};
     for (const transaction of myTransactions) {
       if (transaction.paidBy !== userId) {
-        if (!balancesByUserId[transaction.paidBy]) {
+        // console.log(transaction.paidBy, userId);
+        if (
+          !balancesByUserId[transaction.paidBy] &&
+          transaction.paidBy !== userId
+        ) {
           balancesByUserId[transaction.paidBy] =
             -1 *
             parseFloat(
@@ -428,6 +432,8 @@ router.get(
             share: userId === tu.userId ? tu.amount : null,
           });
         }
+
+        // const paidByShare = userShares.find(share => share.username === user.username)
 
         const createdByUsername = createdUserById[t.createdBy].username;
 

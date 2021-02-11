@@ -86,6 +86,7 @@ const DashboardPage = () => {
     <div className="wrapper">
       <div className="dashboard-container">
         <div className="title-container">
+          <div></div>
           <div className="dashboard-title">Dashboard</div>
           <div className="button-container">
             <AddExpenseModal setCount={setCount} count={count} />
@@ -93,7 +94,7 @@ const DashboardPage = () => {
         </div>
         <div className="balances-container">
           <div className="totals-container">
-            <div>total balance</div>
+            <div>Total balance</div>
             <div
               className={`${owedSum + oweSum > 0 ? "positive" : "negative"}`}
             >{`$${(owedSum + oweSum > 0
@@ -102,13 +103,13 @@ const DashboardPage = () => {
             ).toFixed(2)}`}</div>
           </div>
           <div className="totals-container">
-            <div>you owe</div>
+            <div>You owe</div>
             <div
               className={`${-oweSum > 0 ? "negative" : "positive"}`}
             >{`$${(-oweSum).toFixed(2)}`}</div>
           </div>
           <div className="totals-container">
-            <div>you are owed</div>
+            <div>You are owed</div>
             <div className={`${owedSum > 0 ? "positive" : "negative"}`}>{`$${
               owedSum ? owedSum.toFixed(2) : owedSum
             }`}</div>

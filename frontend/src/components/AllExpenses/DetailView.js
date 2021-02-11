@@ -34,7 +34,7 @@ const DetailView = ({ expense, user, tid }) => {
     };
     changeLength();
   };
-
+  // console.log(expense.userShares);
   return (
     <>
       <div className="detail-container">
@@ -49,13 +49,29 @@ const DetailView = ({ expense, user, tid }) => {
           <div className="detail-users-container">
             {expense.userShares.map((share) => {
               return (
-                <div className="detail-users" key={share.username}>
-                  {share.username !== user.username
-                    ? `${share.username} owes $${share.amount.toFixed(2)}`
-                    : `${share.username} paid $${
-                        share.amount
-                      } and owes $${parseFloat(share.share).toFixed(2)}`}
-                </div>
+                <>
+                  {expense.paidBy === share.username ? (
+                    <div className="detail-users">
+                      {`${expense.paidBy} paid  $${parseFloat(
+                        expense.total
+                      ).toFixed(2)} and owes $${
+                        share.share
+                          ? parseFloat(share.share).toFixed(2)
+                          : share.amount.toFixed(2)
+                      }`}
+                    </div>
+                  ) : (
+                    <div className="detail-users" key={share.username}>
+                      {expense.paidBy === user.userName
+                        ? `${expense.paidBy} owes $${share.amount.toFixed(2)}`
+                        : `${share.username} owes $${share.amount.toFixed(2)}`}
+                      {/* {share.username !== user.username
+                    ? `${user.username} owes $${share.amount.toFixed(2)}`
+                    : `${expense.paidBy} paid $${expense.total} and owes
+                      $${parseFloat(share.share).toFixed(2)}`} */}
+                    </div>
+                  )}
+                </>
               );
             })}
           </div>

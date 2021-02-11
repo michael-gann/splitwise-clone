@@ -1,0 +1,104 @@
+.footer {
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* height: 65px; */
+    background-color: whitesmoke;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    min-height: 65px;
+    /* background-color: #E0A42B; */
+    margin-top: 5%;
+    position: absolute;
+    /* bottom: 0px; */
+    width: 100%;
+    /* width: 100%; */
+    /* height: 150px; */
+    /* background: #3167b1; */
+    /* position: absolute; */
+}
+
+.footer-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 65px;
+}
+
+.social-profiles {
+justify-self: center;
+align-self: center;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.social-profiles a i, .social-profiles > .copy-email {
+ margin: 5px 12px;
+ text-align: center;
+ font-size: 2em;
+ color: rgba(0, 0, 0, 0.6);
+ border-bottom: 1px solid transparent;
+ transition: color 200ms ease-in,
+ border-bottom 200ms ease-in;
+}
+
+.social-profiles a:hover {
+    cursor: default;
+}
+
+.social-profiles a i:hover, .copy-email:hover {
+    color: black;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.me {
+justify-self: center;
+align-self: center;
+font-size: 1.1em;
+}
+
+.portfolio-site {
+justify-self: center;
+align-self: center;
+font-size: 1.2em;
+}
+
+.portfolio-site div > a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid transparent;
+    transition: color 200ms ease-in,
+                border-bottom 200ms ease-in;
+    height: 100%;
+    width: 100%;
+}
+
+.portfolio-site div > a:hover {
+    color: black;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.copied {
+    position: absolute;
+    /* content: "Email copied!"; */
+    bottom:75px;
+    left: 45%;
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+    font-size: 1.5em;
+    color:  rgba(30, 107, 30, 0.856);
+    background-color: rgba(59, 182, 59, 0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.hidden {
+    /* display: none; */
+    /* opacity: 0; */
+    position: absolute;
+    bottom:75px;
+    left: 45%;
+    opacity: 0;
+    font-size: 1.5em;
+    color: green;
+}

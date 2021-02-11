@@ -13,7 +13,7 @@ const LoginFormPage = () => {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/dashboard" />;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +25,18 @@ const LoginFormPage = () => {
     );
   };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    return dispatch(
+      sessionActions.loginUser({
+        credential: "Demo-lition",
+        password: "password",
+      })
+    ).catch((res) => {
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
+  };
+
   return (
     <div className="main-container">
       <form className="login-form" onSubmit={handleFormSubmit}>
@@ -32,7 +44,7 @@ const LoginFormPage = () => {
           <ul className="loginErrors-ul">
             {errors.map((error, idx) => (
               <div className="loginErrors-div" key={idx}>
-                {error}
+                {error === "Invalid value" ? null : error}
               </div>
             ))}
           </ul>
@@ -42,7 +54,7 @@ const LoginFormPage = () => {
               type="text"
               name="username"
               id="username"
-              placeholder="i.e. John123"
+              placeholder="Jane123"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
             ></input>
@@ -53,12 +65,16 @@ const LoginFormPage = () => {
               type="password"
               name="password"
               id="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
           <button className="login-button" type="submit">
-            Log In
+            Login
+          </button>
+          <button className="demo-login" onClick={demoLogin}>
+            Demo Login
           </button>
         </div>
       </form>

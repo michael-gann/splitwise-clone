@@ -1,17 +1,30 @@
 .main-nav-container {
   position: sticky;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background-color: rgb(92, 164, 169);
   box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   top: 0;
-  height: 50px;
+  height: 100%;
   align-items: center;
 }
 
+.nav-wrapper {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  height: 65px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.title {
+  justify-self: center;
+}
+
 .logo {
-  height: 40px;
-  width: 150px;
+  height: 60px;
+  width: 200px;
 }
 
 .logo img {
@@ -21,28 +34,15 @@
 
 }
 
-.sidebar {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  margin-left: 80px;
-}
-
-.sidebar:hover {
-  background-color: rgb(30, 131, 138);
-}
-
-.sidebar:focus {
-  outline: none;
-}
-
-
 .home-link {
   align-self: center;
   width: 100px;
+}
+
+.session-links {
+  justify-self: end;
+  width: 110px;
+  margin-right: 30px;
 }
 
 .active {
@@ -105,4 +105,28 @@
 .profile-dropdown button:hover {
   background-color: rgb(219, 208, 208);
   cursor: pointer;
+}
+
+.option-links {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 40px;
+  background-color: rgb(92, 164, 169);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+.option-links > .navlinks {
+  padding: 2px 50px 2px 50px;
+}
+
+.option-links > .navlinks > a {
+  text-decoration: none;
+  color: black;
+}
+
+.option-links > .navlinks > a:hover {
+  color: white;
+  border-bottom: 1px solid white;
 }

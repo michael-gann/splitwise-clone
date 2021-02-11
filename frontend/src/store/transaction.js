@@ -42,6 +42,7 @@ export const recentActivity = () => async (dispatch) => {
 export const allExpenses = () => async (dispatch) => {
   const res = await fetch("/api/transactions/all");
   dispatch(getAll(res.data));
+  console.log("FROM BACKEND", res.data);
 
   return res;
 };

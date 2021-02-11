@@ -9,6 +9,7 @@ const AddExpenseForm = ({ onClose, setCount, count }) => {
   const [amount, setAmount] = useState("");
   const [paidBy, setPaidBy] = useState("");
   const [date, setDate] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ const AddExpenseForm = ({ onClose, setCount, count }) => {
           onChange={(e) => setUsers(e.target.value)}
           onBlur={() => setOtherUsers(users.split(", "))}
           type="text"
-          placeholder="enter name or email address"
+          placeholder="comma separated list of friends"
         ></input>
       </div>
       <div className="description-container">

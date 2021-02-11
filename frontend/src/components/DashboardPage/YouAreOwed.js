@@ -9,8 +9,9 @@ const YouAreOwed = ({ balances }) => {
         {balances.map((entry, idx) => {
           return (
             <div className="you-are-owed-container" key={idx}>
-              <div>{entry.name}</div>
-              <div>{`owes you $${entry.balance.toFixed(2)}`}</div>
+              <div className="you-are-owed">
+                {entry.name + ` owes you $${entry.balance.toFixed(2)}`}
+              </div>
             </div>
           );
         })}

@@ -12,31 +12,38 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: rgb(248, 248, 248);
-width: auto;
-max-width: 601px;
+width: 65%;
+/* max-width: 601px; */
 box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
+/* margin-bottom: 65px; */
+/* margin-top: 50px; */
+margin-bottom: 10%;
+
 }
 
 .title-container {
   width: 100%;
-  max-width:601px;
+  /* max-width:601px; */
   height: 80px;
-  display: flex;
-  justify-content: center;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
   background-color: rgb(4, 57, 94);
   border-bottom: .1px solid grey;
   color: whitesmoke;
 }
 
 .dashboard-title {
-  width: auto;;
-  max-width: 150px;
-  font-size: 32px;
+  /* width: auto; */
+  /* max-width: 150px; */
+  font-size: 40px;
   font-weight: bold;
   padding: 5px;
   margin-left: 15px;
+  justify-self: center;
+  align-self: center;
 }
 
 .button-container {
@@ -44,9 +51,11 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+  justify-self: center;
+  align-self: center;
 }
 
-/* .settle-up {
+.settle-up {
   margin-right: 15px;
   background-color: rgb(252, 136, 107)
 }
@@ -59,16 +68,17 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 .settle-up:focus {
   outline: 1px solid rgb(56, 163, 165);
   outline-offset: -4px;
-} */
+}
 
 .add-expense-button {
   background-color: rgb(213, 137, 111);
-  padding: 10px 5px;
+  padding: 15px 15px;
   border-radius: 10px;
   color: white;
   border: 1px solid rgb(213, 137, 111);
   cursor: pointer;
   text-decoration: none;
+  font-size: 18px;
   transition: background 250ms ease-in-out,
                 transform 150ms ease;
 }
@@ -85,7 +95,7 @@ box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 
 .balances-container {
 box-sizing: border-box;
-width: 601px;
+width: 100%;
 display: flex;
 justify-content: space-around;
 border-bottom: .1px solid grey;
@@ -97,6 +107,7 @@ background-color: rgb(214, 214, 214)
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 1.5em;
 }
 
 .totals {
@@ -107,10 +118,11 @@ background-color: rgb(214, 214, 214)
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  width: 600px;
+  width: 100%;
   padding: 0 50px;
   padding: 15px;
   border-bottom: 1px solid grey;
+  font-size: 1.3em;
 }
 
 .positive {
@@ -119,6 +131,11 @@ color: green;
 
 .negative {
 color: red;
+}
+
+.positive, .negative {
+  text-align: center;
+  font-size: .9em;
 }
 
 .owe {
@@ -130,31 +147,48 @@ color: red;
 
 
 .owed {
+  padding: 5px;
   margin-right: 15px;
   font-weight: bold;
 }
 
 .list-detail-container {
   box-sizing: border-box;
-  width: 600px;
+  width: 100%;
   display: flex;
-  min-height: 500px;
+  /* min-height: 500px; */
 }
 
 .youareowed-main-container {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.you-owe-main-container {
+  width: 100%;
+}
+
+.youareowed-main-container {
+  width: 100%;
 }
 
 .you-owe-container, .you-are-owed-container {
   box-sizing: border-box;
-  width: 300px;
   display: flex;
   flex-direction: column;
   height: 60px;
   justify-content: center;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid grey;
+  font-size: 1.2em;
+  /* border-bottom: 1px solid grey; */
+}
+
+.you-owe, .you-are-owed {
+  width: 70%;
+}
+
+.you-are-owed {
+  align-self: flex-end;
+  text-align: center;
 }

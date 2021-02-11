@@ -32,32 +32,35 @@ const Navigation = ({ isLoaded }) => {
 
   return (
     <nav className="main-nav-container">
-      <div className="sidebar-menu">
-        <button onClick={handleClick} className="sidebar">
-          <i className="fas fa-bars"></i>
-        </button>
-        <Sidebar user={sessionUser} visible={show}></Sidebar>
-      </div>
-      <div className="title">
-        <div>
-          <NavLink exact to="/">
-            <div className="logo">
-              <img alt="splitease logo" src="/images/splitease-logo.png" />
-            </div>
-          </NavLink>
+      <div className="nav-wrapper">
+        <div className="sidebar"></div>
+        <div className="title">
+          <div>
+            <NavLink exact to="/">
+              <div className="logo">
+                <img alt="splitease logo" src="/images/splitease-logo.png" />
+              </div>
+            </NavLink>
+          </div>
+        </div>
+        <div className="session-links">
+          <div>{isLoaded && sessionLinks}</div>
         </div>
       </div>
-      <div>
-        <div>{isLoaded && sessionLinks}</div>
-      </div>
-      {/* <div className="link-container">
-        <div className="home-link">
-          <NavLink exact to="/">
-            Splitease
-          </NavLink> */}
-      {/* {isLoaded && sessionLinks} */}
-      {/* </div> */}
-      {/* // </div> */}
+
+      {isLoaded && sessionUser ? (
+        <div className="option-links">
+          <div className="navlinks">
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </div>
+          <div className="navlinks">
+            <NavLink to="/activity">Activity</NavLink>
+          </div>
+          <div className="navlinks">
+            <NavLink to="/all">All Expenses</NavLink>
+          </div>
+        </div>
+      ) : null}
     </nav>
   );
 };
