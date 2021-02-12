@@ -8,6 +8,7 @@ import * as transactionActions from "../../store/transaction";
 import YouAreOwed from "./YouAreOwed";
 import YouOwe from "./YouOwe";
 import AddExpenseModal from "./AddExpenseModal";
+import FriendView from "../FriendView/index";
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
@@ -84,6 +85,9 @@ const DashboardPage = () => {
 
   return (
     <div className="wrapper">
+      <div className="friend-view">
+        <FriendView></FriendView>
+      </div>
       <div className="dashboard-container">
         <div className="title-container">
           <div></div>

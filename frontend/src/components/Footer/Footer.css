@@ -1,20 +1,11 @@
 .footer {
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* height: 65px; */
     background-color: whitesmoke;
     width: 100%;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     min-height: 65px;
-    /* background-color: #E0A42B; */
-    margin-top: 5%;
+    margin-top: 10%;
     position: absolute;
-    /* bottom: 0px; */
     width: 100%;
-    /* width: 100%; */
-    /* height: 150px; */
-    /* background: #3167b1; */
-    /* position: absolute; */
 }
 
 .footer-blocks {
@@ -93,8 +84,6 @@ font-size: 1.2em;
 }
 
 .hidden {
-    /* display: none; */
-    /* opacity: 0; */
     position: absolute;
     bottom:75px;
     left: 45%;

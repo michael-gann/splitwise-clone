@@ -1,9 +1,9 @@
 .wrapper {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
-
+  position: relative;
 }
 
 .dashboard-container {
@@ -12,7 +12,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: rgb(248, 248, 248);
-width: 65%;
+width: 60%;
 /* max-width: 601px; */
 box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 /* margin-bottom: 65px; */
@@ -191,4 +191,11 @@ color: red;
 .you-are-owed {
   align-self: flex-end;
   text-align: center;
+}
+
+.friend-view {
+  align-self: start;
+  position: absolute;
+  left: 0px;
+  /* top: 1%; */
 }

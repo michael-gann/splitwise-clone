@@ -1,18 +1,14 @@
 /* TODO Add site wide styles */
 body {
   background-color: rgb(245, 250, 245);
-  /* width: 100vw; */
-  /* height: 100vh; */
   margin: 0;
   margin-bottom: 65px;
   font-family: 'Karla', sans-serif;
   font-size: 16px;
   color: rgb(26, 50, 85);
-  /* position: relative; */
 }
 
 html {
-  /* width: 100vw; */
   height: 100%;
 }
 

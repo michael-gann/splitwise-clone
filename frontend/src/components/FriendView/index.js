@@ -12,6 +12,7 @@ const FriendView = () => {
   const friends = useSelector((state) => state.friends.friends);
   const [count, setCount] = useState(0);
   const [friend, setFriend] = useState("");
+  const [errors, setErrors] = useState("");
 
   useEffect(() => {
     return dispatch(friendActions.friends());
@@ -19,6 +20,7 @@ const FriendView = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors("");
 
     const res = await fetch("/api/friends", {
       method: "POST",
@@ -34,7 +36,7 @@ const FriendView = () => {
     if (res.data.success) {
       return;
     } else {
-      return;
+      setErrors(res.data.error);
     }
   };
 
@@ -42,6 +44,7 @@ const FriendView = () => {
     <div className="friend-container">
       <div className="friend-title">Friends</div>
       <Friend friends={friends}></Friend>
+      {errors ? <div className="add-friend-error">{errors}</div> : null}
       <div className="add-friend-container">
         <form onSubmit={handleSubmit} method="post" type="submit">
           <label>

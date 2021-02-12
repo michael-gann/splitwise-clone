@@ -12,8 +12,8 @@ flex-direction: column;
 justify-content: center;
 /* align-items: center; */
 background-color: rgb(248, 248, 248);
-width: auto;
-max-width: 601px;
+width: 60%;
+/* max-width: 601px; */
 box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 margin-bottom: 10%;
 }
@@ -31,7 +31,7 @@ margin-bottom: 10%;
   background-color: rgb(4, 57, 94);
   border-bottom: .1px solid grey;
   width: 100%;
-  max-width: 601px;
+  /* max-width: 601px; */
   height: 80px;
   color: whitesmoke;
 }
@@ -39,7 +39,7 @@ margin-bottom: 10%;
 .expense-detail {
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 100%;
 }
 
 .expense-details {
@@ -61,21 +61,21 @@ margin-bottom: 10%;
 
 .expense-details-inner {
   display: flex;
-  width: 600px;
+  width: 100%;
   justify-content: space-between;
 
 }
 
 .date-title-container {
 display: flex;
-width:250px;
+width: 600px;
 }
 
 .date {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 35px;
+  width: 150px;
   margin-left: 5px;
 }
 
@@ -99,7 +99,7 @@ text-align: center;
 
 .expenses-container {
   display: flex;
-  width: 350px;
+  width: 450px;
 }
 
 .expense-paid-by-container {
@@ -111,7 +111,7 @@ text-align: center;
 }
 
 .expense-paid-by {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .expense-total {}
@@ -120,17 +120,17 @@ text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
 }
 
 .user-info {
-  text-align: center;
-  font-size: 12px;
+  /* text-align: center; */
+  font-size: 14px;
 }
 
 .amount-owe {
-  color: red
+  color: red;
 }
 
 .amount-owed {
@@ -156,8 +156,8 @@ text-align: center;
   justify-content: center;
   align-items: center;
   background-color: rgb(248, 248, 248);
-  width: auto;
-  max-width: 601px;
+  width: 100%;
+  /* max-width: 601px; */
   box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
 }
 
@@ -166,15 +166,15 @@ text-align: center;
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid grey;
-  width: 600px;
+  width: 100%;
 }
 
 .detail-title {
   padding: 3px;
-  font-size:20px;
+  font-size:26px;
   text-align: center;
   width: 100%;
-  max-width: 200px;
+  max-width: 300px;
 }
 
 .detail-amount {
@@ -196,10 +196,12 @@ text-align: center;
   box-sizing: border-box;
   padding: 10px 20px;
   font-size: 14px;
-  width: 300px;
+  width: 550px;
 }
 
-.detail-users {}
+.detail-users {
+  font-size: 1.2em;
+}
 
 .detail-comments-container {
   width: 300px;
@@ -213,10 +215,15 @@ text-align: center;
 .detail-comments-container textarea {
   font-family: 'Karla', sans-serif;
   background-color: rgb(250, 250, 250);
-  width: 250px;
+  width: 275px;
   height:50px;
   border-radius: 5px;
-  border-color: grey
+  border-color: grey;
+  margin-left: 10px;
+}
+
+.detail-comments-container button {
+  margin-left: 10px;
 }
 
 /* COMMENTS STYLING */
@@ -226,7 +233,7 @@ text-align: center;
 
 .comment-content {
   background-color: white;
-  width: 200px;
+  width: 260px;
   height: 50px;
   padding: 10px;
   border-radius: 5px;

@@ -57,18 +57,22 @@ router.post(
 
     const userId = user.id;
 
-    const friendId = (
-      await User.findOne({
-        where: {
-          username: friend,
-        },
-      })
-    ).id;
+    try {
+      const friendId = (
+        await User.findOne({
+          where: {
+            username: friend,
+          },
+        })
+      ).id;
 
-    const addFriend = await Friend.create({
-      userId1: userId,
-      userId2: friendId,
-    });
+      const addFriend = await Friend.create({
+        userId1: userId,
+        userId2: friendId,
+      });
+    } catch (e) {
+      res.send({ error: "No such user exists" });
+    }
 
     res.send({ success: true });
   })
