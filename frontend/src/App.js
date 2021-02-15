@@ -10,6 +10,7 @@ import RecentActivityPage from "./components/RecentActivityPage";
 import AllExpenses from "./components/AllExpenses";
 import Footer from "./components/Footer/index";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import Splash from "./components/Splash";
 // import Welcome from "./components/Welcome";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/">
+            <Splash />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
