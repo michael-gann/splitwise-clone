@@ -43,7 +43,9 @@ const Footer = () => {
         </div>
         <div className="portfolio-site">
           <div>
-            <a href="/">Portfolio</a>
+            <a href="https://michael-gann.github.io/michael-gann.github.io/">
+              Portfolio
+            </a>
           </div>
         </div>
       </div>
