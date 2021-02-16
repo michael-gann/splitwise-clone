@@ -22,10 +22,18 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-blocks">
         <div className="social-profiles">
-          <a href="https://github.com/michael-gann">
+          <a
+            href="https://github.com/michael-gann"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fab fa-github-square"></i>
           </a>
-          <a href="https://www.linkedin.com/in/michael-gann-1a2161201/">
+          <a
+            href="https://www.linkedin.com/in/michael-gann-1a2161201/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fab fa-linkedin"></i>
           </a>
           <a onClick={handleClick} href="/">
@@ -34,7 +42,11 @@ const Footer = () => {
             </div>
             <i class="far fa-envelope"></i>
           </a>
-          <a href="https://angel.co/u/michael-gann-1">
+          <a
+            href="https://angel.co/u/michael-gann-1"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <i className="fab fa-angellist"></i>
           </a>
         </div>
@@ -43,7 +55,11 @@ const Footer = () => {
         </div>
         <div className="portfolio-site">
           <div>
-            <a href="https://michael-gann.github.io/michael-gann.github.io/">
+            <a
+              href="https://michael-gann.github.io/michael-gann.github.io/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               Portfolio
             </a>
           </div>
