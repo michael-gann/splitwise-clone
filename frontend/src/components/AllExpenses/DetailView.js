@@ -51,7 +51,10 @@ const DetailView = ({ expense, user, tid }) => {
               return (
                 <>
                   {expense.paidBy === share.username ? (
-                    <div className="detail-users">
+                    <div
+                      className="detail-users"
+                      key={expense.transactionId + share.username}
+                    >
                       {`${expense.paidBy} paid  $${parseFloat(
                         expense.total
                       ).toFixed(2)} and owes $${
@@ -61,7 +64,7 @@ const DetailView = ({ expense, user, tid }) => {
                       }`}
                     </div>
                   ) : (
-                    <div className="detail-users" key={share.username}>
+                    <div className="detail-users" key={expense.transactionId}>
                       {expense.paidBy === user.userName
                         ? `${expense.paidBy} owes $${share.amount.toFixed(2)}`
                         : `${share.username} owes $${share.amount.toFixed(2)}`}

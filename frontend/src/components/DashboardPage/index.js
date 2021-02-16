@@ -84,7 +84,7 @@ const DashboardPage = () => {
   if (!sessionUser) return <Redirect to="/login" />;
 
   return (
-    <div className="wrapper">
+    <div className="dashboard-wrapper">
       <div className="friend-view">
         <FriendView></FriendView>
       </div>

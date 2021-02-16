@@ -1,21 +1,18 @@
 .wrapper {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; */
 }
 
 .all-expenses-container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-/* align-items: center; */
-background-color: rgb(248, 248, 248);
-width: 60%;
-/* max-width: 601px; */
-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
-margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(248, 248, 248);
+  width: 60%;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .3);
+  margin-bottom: 10%;
 }
 
 .expenses-title {
@@ -31,7 +28,6 @@ margin-bottom: 10%;
   background-color: rgb(4, 57, 94);
   border-bottom: .1px solid grey;
   width: 100%;
-  /* max-width: 601px; */
   height: 80px;
   color: whitesmoke;
 }
@@ -84,14 +80,15 @@ width: 600px;
 }
 
 .day  {
-text-align: center;
+  text-align: center;
+  font-size:1.3em;
 }
 
 .expense-title {
   box-sizing: border-box;
   margin-left: 40px;
   font-weight: bold;
-  font-size: large;
+  font-size: 1.4em;
   align-self: center;
   min-width: 200px;
   width: 100%;
@@ -114,8 +111,6 @@ text-align: center;
   font-size: 16px;
 }
 
-.expense-total {}
-
 .user-info-container {
   display: flex;
   flex-direction: column;
@@ -125,7 +120,6 @@ text-align: center;
 }
 
 .user-info {
-  /* text-align: center; */
   font-size: 14px;
 }
 
@@ -218,12 +212,27 @@ text-align: center;
   width: 275px;
   height:50px;
   border-radius: 5px;
-  border-color: grey;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin-left: 10px;
 }
 
 .detail-comments-container button {
   margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-top: 5px;
+  background-color: teal;
+  color: white;
+}
+
+.detail-comments-container button:hover {
+  background-color: rgb(16, 163, 139)
+}
+
+.detail-comments-container button:active {
+  transform: translate(1px, 2px);
 }
 
 /* COMMENTS STYLING */
@@ -238,6 +247,7 @@ text-align: center;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1)
 }
 
 .comment-user {

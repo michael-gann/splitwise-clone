@@ -16,8 +16,12 @@ const ExpenseDetail = ({ expense, user, tid }) => {
         <div onClick={handleClick} className="expense-details-inner">
           <div className="date-title-container">
             <div className="date">
-              <div className="month">{expense.date.month}</div>
-              <div className="day">{expense.date.day}</div>
+              <div className="month">{expense.date.month.toUpperCase()}</div>
+              <div className="day">
+                {expense.date.day >= 1 && expense.date.day <= 9
+                  ? `0${expense.date.day}`
+                  : expense.date.day}
+              </div>
             </div>
             <div className="expense-title">{expense.title}</div>
           </div>
