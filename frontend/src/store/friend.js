@@ -16,7 +16,7 @@ export const friends = () => async (dispatch) => {
   return res;
 };
 
-const friendReducer = (state = { friends: null }, action) => {
+const friendReducer = (state = { friends: {} }, action) => {
   let newState;
   switch (action.type) {
     case GET_FRIENDS:

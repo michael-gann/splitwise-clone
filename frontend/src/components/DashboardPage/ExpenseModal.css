@@ -42,7 +42,13 @@ padding: 10px;
   box-sizing: border-box;
   padding: 15px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
+}
+
+.select-users-container > .users-container-label {
+  font-size: 1.3em;
 }
 
 .select-users-container input {
@@ -57,19 +63,21 @@ padding: 10px;
 .description-container {
   display:flex;
   flex-direction: column;
-  padding: 15px;
+  /* padding: 15px; */
   background-color: white;
+  padding-top: 15px;
 }
 
 .description-container input {
   border: none;
   border-bottom: solid .2px lightslategrey;
   height: 22px;
-  font-size: 16px;
+  font-size: 1.3em;
   background-color: white;
   width: 200px;
   align-self: center;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .amount-container {
@@ -85,7 +93,7 @@ background-color: white;
   height: 28px;
   font-size: 26px;
   width: 100px;
-  text-align: center;
+  /* text-align: center; */
   background-color: white;
   padding: 2px;
 }
@@ -117,6 +125,11 @@ background-color: white;
 
 .split-evenly {
   padding: 15px;
+}
+
+.date-field {
+  padding: 10px 40px;
+  font-size: 1.1em;
 }
 
 .footer-buttons-container {
@@ -178,4 +191,20 @@ background-color: white;
 
 #modal-content {
 border-radius: 10px
+}
+
+#paid-by-label {
+  font-size: 2em;
+}
+
+.Mui-focused {
+  background-color: white;
+}
+
+#checkbox {
+  width: 500px;
+}
+
+.error-div {
+  color: red;
 }

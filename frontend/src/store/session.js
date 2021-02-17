@@ -58,7 +58,7 @@ export const signup = (user) => async (dispatch) => {
   return res;
 };
 
-const sessionReducer = (state = { user: null }, action) => {
+const sessionReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case SET_USER:
