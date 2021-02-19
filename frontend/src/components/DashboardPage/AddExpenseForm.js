@@ -107,9 +107,9 @@ const AddExpenseForm = ({ onClose, setCount, count }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("check is valid", checkIsValid(errors));
+    // console.log("check is valid", checkIsValid(errors));
     if (checkIsValid(errors)) {
-      console.log("submitting for some reason....");
+      // console.log("submitting for some reason....");
       const expense = {
         users: otherUsers,
         title: description,
@@ -140,7 +140,7 @@ const AddExpenseForm = ({ onClose, setCount, count }) => {
     }
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   const handleChange = (e) => {
     setPaidBy(e.target.value);
