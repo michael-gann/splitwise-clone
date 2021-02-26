@@ -2,6 +2,8 @@ import { fetch } from "./csrf";
 
 const GET_COMMENTS = "comments/all";
 
+// TODO: add an add comment action to properly update state;
+
 const getComments = (comments) => {
   return {
     type: GET_COMMENTS,

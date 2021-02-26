@@ -2,6 +2,8 @@ import { fetch } from "./csrf";
 
 const GET_FRIENDS = "friends/all";
 
+// TODO: create add friend action to properly update state
+
 const getFriends = (friends) => {
   return {
     type: GET_FRIENDS,
