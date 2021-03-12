@@ -30,7 +30,7 @@
 
 <!-- <br /> -->
 <p align="center">
-  <a href="https://github.com/michael-gann/Petsy">
+  <a href="https://github.com/michael-gann/splitwise-clone">
     <img src="images/petsy-logo.png" alt="Logo" width=200" height="200">
   </a>
 
