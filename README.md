@@ -37,7 +37,7 @@
   <h3 align="center">Splitease</h3>
 
   <p align="center">
-  Splitease (a clone of <a href"https://www.splitwise.com/">Splitwise</a>) is an app that allows you to keep track of expenses with friends. One person can pay for dinner or a night out and then add friends to an expense to keep track of who owes who money.
+  Splitease (a clone of <a href"https://www.splitwise.com/">Splitwise</a>) is an app that allows you to keep track of expenses with friends. One person can pay for dinner or a night out and then add friends to an expense to keep track of who owes who money. You can also take a look at past expenses and see the breakdown of other people who are part of that transaction with you, as well as comment on a transaction you are involved in. You can also take a look at recent activity to get a quick look at what expenses others say you are involved in.
     <br />
     <!-- <a href="https://github.com/michael-gann/buttery"><strong>Explore the docs »</strong></a> -->
     <br />
@@ -90,7 +90,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To start using the app, create an account [here](https://splitease.herokuapp.com/signup) by clicking on **Sign up** in the top right of your screen.<br> Alternatively, head over [here](https://splitease.herokuapp.com/login) and click **Login** in the top right of your screen. Inside the modal, click the **Demo login** button to login as a demo user without creating an account. Or login with your credentials if you have an account.
+To start using the app, create an account [here](https://splitease.herokuapp.com/signup) by clicking on **Sign up** in the top right of your screen.<br> Alternatively, head over [here](https://splitease.herokuapp.com/login) and click **Login** in the top right of your screen. Click the **Demo login** button to login as a demo user without creating an account. Or login with your credentials if you have an account.
 
 <!-- ### Prerequisites
 
@@ -124,19 +124,18 @@ To start using the app, create an account [here](https://splitease.herokuapp.com
 ## Usage
 
 ### Friending
-Users can add friends who have an account created to keep track of expenses.
+On the main dashboard page after logging in, you can see your friends on the left side of the screen. Here you can type the username of a friend you would like to add and they will be added as your friend. Then you can start adding expenses with that friend when one of you pays for, well, anything!
 
 
 ### Expenses
-Users can create expenses between multiple friends to keep track of how much money they owe a friend or are owed by a friend.
-
+You can create expenses between multiple (or one) friends to keep track of how much money you owe a friend or are owed by a friend. The button for adding an expense is to the right of the **Dashboard** title on the dashboard page. Expenses can be added anytime, by any friend, but you won't have the option of including someone on a transaction unless you are friends. A modal will pop-up, allowing you to enter the friends to include on a transaction, the title for the expense (Maybe it was Dinner, or a Movie), the amount that was paid for that expense, who paid for that expense, and the date of the expense. Clicking save will save the expense to the app.
 
 ### Transaction History
-Users can see their recent activity to see who added them to an expense or who they've added to an expense.
+You can see your recent activity which will show you who added you to an expense or who you have added to an expense. Here you can click a transaction to expand it to view more detail about the transaction.
 
 
 ### Comments
-Users can comment on expenses to share their thoughts about any expense they are involved in.
+You can click on a transaction to add a comment on it for others involved in the transaction to see.
 
 ## DB Schema
 
