@@ -155,7 +155,6 @@ You can click on a transaction to add a comment on it for others involved in the
 ## Acknowledgements
 
 * [othneildrew/best-README-template](https://github.com/othneildrew/Best-README-Template)
-<br> <br> *\*No animals were harmed in the making of this site.*
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
