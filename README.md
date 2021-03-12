@@ -37,7 +37,7 @@
   <h3 align="center">Splitease</h3>
 
   <p align="center">
-    Splitease (a clone of [Splitwise](https://www.splitwise.com/)) is an app that allows you to keep track of expenses with friends. One person can pay for dinner or a night out and then add friends to an expense to keep track of who owes who money.
+    Splitease ( a clone of [Splitwise](https://www.splitwise.com/) ) is an app that allows you to keep track of expenses with friends. One person can pay for dinner or a night out and then add friends to an expense to keep track of who owes who money.
     <br />
     <!-- <a href="https://github.com/michael-gann/buttery"><strong>Explore the docs »</strong></a> -->
     <br />
